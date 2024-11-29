@@ -14,12 +14,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Fecha: `r format(Sys.time(), '%d %B, %Y')`
 
-- Requerimos que complete un formulario de tamizaje previo al curso [aquí](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
+Se requiere conocimientos previos en R y RStudio, además de contar con un computador habilitado para instalar R (4.2+), RStudio, Rtools, GitHub Desktop ([enlace](https://desktop.github.com/)) y Quarto ([enlace](https://quarto.org/docs/get-started/)).
 
 
 Esta página está compuesta de los siguientes tópicos:
 
-- **Clase 1: [aquí](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
+- **Clase 1: ¿Qué entenderemos por reproducibilidad?** [.pdf](./man/clase1.pdf)
+
 
 ## Requisitos de software
 
@@ -49,7 +50,7 @@ Universidad de Chile
 gonzalez.santacruz.andres@gmail.com
 
 
-## File list
+## Archivos y directorio
 
 ```{r list-files}
 cat(list.files(path = ".", recursive = TRUE), sep = "\n")

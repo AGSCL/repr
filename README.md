@@ -2,13 +2,15 @@
 
 # Fecha: 29 noviembre, 2024
 
--   Requerimos que complete un formulario de tamizaje previo al curso
-    [aquí](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
+Se requiere conocimientos previos en R y RStudio, además de contar con
+un computador habilitado para instalar R (4.2+), RStudio, Rtools, GitHub
+Desktop ([enlace](https://desktop.github.com/)) y Quarto
+([enlace](https://quarto.org/docs/get-started/)).
 
 Esta página está compuesta de los siguientes tópicos:
 
--   \*\*Clase 1:
-    [aquí](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
+-   **Clase 1: ¿Qué entenderemos por reproducibilidad?**
+    [.pdf](./man/clase1.pdf)
 
 ## Requisitos de software
 
@@ -35,7 +37,7 @@ Estudiante Doctorado en Salud Pública Universidad de Chile
 
 <gonzalez.santacruz.andres@gmail.com>
 
-## File list
+## Archivos y directorio
 
     ## ___requirements.txt
     ## _run_docker.sh
@@ -59,6 +61,7 @@ Estudiante Doctorado en Salud Pública Universidad de Chile
     ## index.Rmd
     ## inst/CITATION
     ## LICENSE.md
+    ## man/clase1.pdf
     ## mylibs/animate.min.css
     ## mylibs/collapse-output.html
     ## mylibs/collapseoutput.js
@@ -71,6 +74,7 @@ Estudiante Doctorado en Salud Pública Universidad de Chile
     ## mylibs/xaringan-themer.css
     ## mylibs/zoom.html
     ## NAMESPACE
+    ## README.md
     ## README.Rmd
     ## renv.lock
     ## renv/activate.R
