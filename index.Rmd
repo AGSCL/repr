@@ -44,5 +44,5 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Esta página está compuesta de los siguientes tópicos:
 
-- **Clase 1: ¿Qué entenderemos por reproducibilidad?** [.html](Clase1.html) [.pdf](Clase1.pdf)
+- **Clase 1: ¿Qué entenderemos por reproducibilidad?** [.pdf](./man/clase1.pdf)
 
