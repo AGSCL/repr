@@ -1,34 +1,8 @@
 ---
 title: "Reproducibilidad y Comunicacion de Resultados"  #cuidado con tilde
-site: distill::distill_article
-source_url: true
-author:
-  - name: González-Santa Cruz, A. 
-    affiliation: |
-      Investigador Joven, Núcleo Milenio nDP;
-      Estudiante Doctorado en Salud Pública, Universidad de Chile
-    orcid_id: 0000-0002-5166-9121
-  - name: Lagos-Barrios, R. 
-    affiliation: |
-      Ingeniero civil industrial U. de Chile, magíster en investigación de operaciones U. of British Columbia, estudiante de Doctorado en Salud Pública U. de Chile.
-  - name: Aguero-Jimenez, A. 
-    affiliation: |
-      Cirujano dentista, Magíster en Bioestadística y diplomado en Epidemiología y bioestadística aplicada de la Universidad de Chile, con distintos cursos en ciencias de datos.
-    orcid_id: 0000-0001-7336-1833    
-encoding: utf-8
 output:
-  distill::distill_article:
-    theme: mylibs/theme.css
-    code_folding: true
-    fig_height: 6
-    fig_width: 8
-    toc: yes
-    toc_depth: 5
-    toc_float: yes
-    output_dir: "."
-  toc_float:
-    collapsed: false
-    smooth_scroll: true
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}

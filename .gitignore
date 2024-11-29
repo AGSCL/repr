@@ -93,9 +93,6 @@ vignettes/*.pdf
 # Variables de entorno de R
 .Renviron
 
-# Sitio de pkgdown
-docs/
-
 # Archivos temporales de traducción
 po/*~
 
@@ -104,8 +101,8 @@ rsconnect/
 
 #archivos de paquetes estadísticos
 #
-renv/*
-renv.lock
+#renv/*
+#renv.lock
 
 # Excluir archivos específicos
 
@@ -124,16 +121,6 @@ renv.lock
 #claves de acceso
 *ssh*
 *id_rsa_*
-
-#carpetas:
-_bib/*
-_outputs/*
-_output/*
-data/*
-___prueba/*
-grabaciones/*
-_entrevistas/*
-dedup/*
 
 #para aplicaciones shiny
 .secrets/*
