@@ -1,2 +1,9 @@
+^renv$
+^renv\.lock$
 ^repr\.Rproj$
 ^\.Rproj\.user$
+^repr\d+$
+^paper$
+^talks_posters$
+^grants$
+^LICENSE\.md$

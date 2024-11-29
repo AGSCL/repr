@@ -1,0 +1,58 @@
+---
+title: "ESTADISTICA APLICADA Y PROCESAMIENTO DE DATOS CON R"  #cuidado con tilde
+site: distill::distill_article
+source_url: true
+author:
+  - name: González-Santa Cruz, A. 
+    affiliation: |
+      Investigador Joven, Núcleo Milenio nDP;
+      Estudiante Doctorado en Salud Pública, Universidad de Chile
+    orcid_id: 0000-0002-5166-9121
+  - name: Ruiz-Tagle Maturana, J.A. 
+    affiliation: |
+      Docente Fundación Instituto Profesional Duoc UC, Santiago, Chile; Investigador Joven, Núcleo Milenio nDP; 
+      Programa de Doctorado en Políticas Públicas, Universidad Mayor, Santiago, Chile.
+    orcid_id: 0000-0002-4866-5701    
+encoding: utf-8
+output:
+  distill::distill_article:
+    theme: theme.css
+    code_folding: true
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+    output_dir: "docs"
+  toc_float:
+    collapsed: false
+    smooth_scroll: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+# Fecha: `r format(Sys.time(), '%d %B, %Y')`
+
+- Requerimos que complete un formulario de tamizaje previo al curso [aquí](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
+
+
+Esta página está compuesta de los siguientes tópicos:
+
+- **Clase 0: Pasos para crear un proyecto** [aquí](proyecto.html)
+
+- **Clase 1: Introducción a R y la investigación reproducible // Recursos en línea** [.html](Clase1.html) [.pdf](Clase1.pdf)
+
+- **Clase 2: Paquetes, funciones, objetos, medidas de resumen ** [.html](Clase2.html) [.pdf](Clase2.pdf)
+
+- **Clase 3: Exploración de datos y Estadística descriptiva** [.html](Clase3.html) [.pdf](Clase3.pdf)
+
+- **Clase 4: Tidyverse** [.html](Clase4.html) [.pdf](Clase4.pdf)
+
+- **Clase 5: Tidyverse y Visualización de datos con ggplot2** [.html](Clase5.html) [.pdf](Clase5.pdf)
+
+- **Clase 6: Rmarkdown y aplicación estadística bivariada** [.html](Clase6.html) [.pdf](Clase6.pdf)

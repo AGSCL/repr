@@ -1,0 +1,63 @@
+
+
+# Establecer el repositorio CRAN de Chile
+local({
+  r <- getOption("repos")
+  r["CRAN"] <- "https://cran.dcc.uchile.cl/"
+  options(repos = r)
+})
+
+# Instalar pacman si no está disponible
+if (!requireNamespace("pacman", quietly = TRUE)) {
+  install.packages("pacman")
+}
+
+# Instalar devtools si no está disponible
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+
+# Cargar y/o instalar paquetes desde CRAN
+pacman::p_load(
+  # Paquetes para desarrollo y visualización
+  devtools, shiny, here, showtext, ggpattern, RefManageR, pagedown, magick, 
+  bibtex, DiagrammeR, xaringan, xaringanExtra, xaringanthemer, fontawesome, 
+  widgetframe, datapasta, tidyverse, psych, cowplot, pdftools, showtext, 
+  compareGroups, ggiraph, sf, distill, data.tree, googlesheets4, countdown, crosstalk,
+  RColorBrewer, install = TRUE # Instalar si no están presentes
+)
+
+# Instalar rcanvas desde GitHub si no está disponible
+if (!requireNamespace("rcanvas", quietly = TRUE)) {
+  devtools::install_github("daranzolin/rcanvas", upgrade = "never")
+}
+
+# Instalar xaringanBuilder desde GitHub si no está disponible
+if (!requireNamespace("xaringanBuilder", quietly = TRUE)) {
+  devtools::install_github("jhelvy/xaringanBuilder", upgrade = "never")
+}
+
+# Instalar icons desde GitHub si no está disponible
+if (!requireNamespace("icons", quietly = TRUE)) {
+  remotes::install_github("mitchelloharawild/icons", upgrade = "never")
+}
+
+# Instalar shinysurveys desde CRAN si no está disponible
+if (!requireNamespace("shinysurveys", quietly = TRUE)) {
+  install.packages("shinysurveys", force = TRUE)
+}
+
+# Instalar renderthis desde CRAN si no está disponible
+if (!requireNamespace("renderthis", quietly = TRUE)) {
+  install.packages("renderthis", force = TRUE)
+}
+
+# Instalar Chromote desde GitHub, si no está disponible
+if (!requireNamespace("chromote", quietly = TRUE)) {
+  remotes::install_github('rstudio/chromote', upgrade = "never")
+}
+
+# Instalar Pagedown, si no está disponible
+if (!requireNamespace("pagedown", quietly = TRUE)) {
+  install.packages('pagedown')
+}

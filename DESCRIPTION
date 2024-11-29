@@ -1,16 +1,55 @@
 Package: repr
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Reproducibilidad y Comunicación de Resultados
+Version: 1.0.0
 Authors@R: 
-    person("Frederik", "Aust", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0003-4900-788X"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Andrés", "González", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5166-9121"))
+Description: Este paquete contiene recursos para enseñar reproducibilidad
+y comunicación de resultados en R, incluyendo datasets, funciones y ejemplos.
+License: CC BY 4.0
 Encoding: UTF-8
-Language: en
+Language: es
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
+# CRAN dependencies
+Imports:
+    shiny,
+    here,
+    showtext,
+    ggpattern,
+    RefManageR,
+    pagedown,
+    magick,
+    bibtex,
+    DiagrammeR,
+    xaringan,
+    xaringanExtra,
+    xaringanthemer,
+    fontawesome,
+    widgetframe,
+    datapasta,
+    tidyverse,
+    psych,
+    cowplot,
+    pdftools,
+    compareGroups,
+    ggiraph,
+    sf,
+    distill,
+    data.tree,
+    googlesheets4,
+    countdown,
+    crosstalk,
+    RColorBrewer
+# Suggested packages for testing or extended functionality
+Suggests:
+    testthat,
+    knitr
+# GitHub dependencies
+Remotes:
+    daranzolin/rcanvas,
+    jhelvy/xaringanBuilder,
+    mitchelloharawild/icons,
+Config/repositories:
+    CRAN = https://cran.dcc.uchile.cl/
+Config/testthat/edition: 1

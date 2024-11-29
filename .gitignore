@@ -1,6 +1,162 @@
+# Archivos relacionados con R
 .Rproj.user
 .Rhistory
-.Rdata
+.RData
+.Ruserdata
+.Rproj
+/*.Rdata/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Archivos específicos de Windows
+desktop.ini
+*/desktop.ini
+**/desktop.ini
+*.ini
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*desktop.ini
+**desktop.ini
+
+# Output files from R CMD build
+/*.tar.gz
+# Output files from R CMD check
+/*.Rcheck/
+
+# project files
+/build/*
+/tmp/*
+/docs/*
+
+# Archivos de proyecto de SublimeText
+*.sublime-workspace
+
+# Mercurial
+/.hg/*
+*/.hg/*
+.hgignore
+
+# SVN
+.svn/
+
+# Archivos de proyecto
+/build/*
+/tmp/*
+/docs/*
+
+# Archivos de historial
+.Rhistory
+.Rapp.history
+
+# Archivos de datos de sesión
+.RDataTmp
+
+# Archivos específicos de usuario
+.Ruserdata
+
+# Código de ejemplo en el proceso de construcción del paquete
+*-Ex.R
+
+# Archivos de salida de R CMD build
+/*.tar.gz
+
+# Archivos de salida de R CMD check
+/*.Rcheck/
+
+# Archivos de RStudio
+.Rproj.user/
+
+# Vignettes producidas
+vignettes/*.html
+vignettes/*.pdf
+
+# Token OAuth2, ver https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
-.DS_Store
-.quarto
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# Directorios de caché predeterminados de knitr y R markdown
+*_cache/
+/cache/
+*cache*
+
+# Archivos temporales creados por R markdown
+*.utf8.md
+*.knit.md
+
+# Variables de entorno de R
+.Renviron
+
+# Sitio de pkgdown
+docs/
+
+# Archivos temporales de traducción
+po/*~
+
+# Carpeta de RStudio Connect
+rsconnect/
+
+#archivos de paquetes estadísticos
+#
+renv/*
+renv.lock
+
+# Excluir archivos específicos
+
+# Excluir extensiones con datos
+*docx
+*.rar
+*.zip
+**.rar
+**.zip
+**.docx
+**.gslides
+**.gdocs
+**.gsheets
+**.gdoc
+
+#claves de acceso
+*ssh*
+*id_rsa_*
+
+#carpetas:
+_bib/*
+_outputs/*
+_output/*
+data/*
+___prueba/*
+grabaciones/*
+_entrevistas/*
+dedup/*
+
+#para aplicaciones shiny
+.secrets/*
+./secrets
+*/.secrets
+./_shiny/secrets/*
+_shiny/secrets/*
+secrets/*
+
+#excluir canvas y correo
+canvas.Rmd
+correo.Rmd
+
+#carpeta de prueba
+_prueba/*
+taller_*_respuesta.Rmd
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+#exclude ejercicios resueltos
+ej_clase?.Rmd
+
+#eliminar información de mi correo
+*creds_file
+creds_file
