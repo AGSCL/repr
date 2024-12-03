@@ -22,8 +22,8 @@ PROJECT_NAME="papajaworkshop"
 #
 # Any year starting from 2000 is a valid TEXLIVE_VERSION
 
-R_RELEASE="4.1.2"
-RSTUDIO_VERSION="2021.09.0+351"
+R_RELEASE="4.4.0"
+RSTUDIO_VERSION="2024.09.0"
 TEXLIVE_VERSION="2021"
 PAPAJA_VERSION="@devel" # Eventually we should only accept releases here
 
@@ -39,7 +39,7 @@ BASE_NAME="papaja:$TAG"
 PROJECT_NAME="$PROJECT_NAME:$TAG"
 
 # Add to both builds to specify a MRAN snapshot
-# 
+#
 #   --build-arg BUILD_DATE=<DATE>
 
 docker build \
