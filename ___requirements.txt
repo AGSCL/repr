@@ -1,5 +1,3 @@
-
-
 # Establecer el repositorio CRAN de Chile
 local({
   r <- getOption("repos")
