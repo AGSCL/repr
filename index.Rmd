@@ -50,5 +50,5 @@ Esta página está compuesta de los siguientes tópicos:
 
 - **Clase 4: Informes dinámicos** [.pdf](./man/clase4.pdf)
 
-- **Clase 5-6: Informes en Shiny ** [.html](./man/clase5.html)
+- **Clase 5-6: Informes en Shiny ** [.html](./clase5.html)
 
