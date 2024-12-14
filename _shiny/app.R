@@ -6,7 +6,7 @@ library(ggplot2)
 my_theme <- bs_theme(
   base_font = font_google("Oswald"),
   bg = "white",
-  fg = "#555555",  # title color
+  fg = "#000000", #title color
   primary = "#bc7777",  # header color
   "body-color" = "rgba(0, 0, 0, 0.8)",
   "card-bg" = "white",
@@ -251,6 +251,17 @@ rsconnect::setAccountInfo(name = "nombre_cuenta",
               <li><a href='https://mastering-shiny.org/' target='_blank' style='color: #bc7777;'>Libro: Mastering Shiny</a></li>
               <li><a href='https://gallery.shinyapps.io/assistant/' target='_blank' style='color: #bc7777;'>Asistente Shiny (AI)</a></li>
               <li><a href='https://tilburgsciencehub.com/topics/visualization/data-visualization/dashboarding/shinydashboard/' target='_blank' style='color: #bc7777;'>shinydashboard</a></li>
+            </ul>
+          ")
+      )
+    ),
+    card(
+      card_header("Hágalo usted mismo"),
+      card_body(
+        HTML("
+            <ul style='color: rgba(0, 0, 0, 0.8);'>
+              <li> Usando el siguiente <a href='https://raw.githubusercontent.com/AGSCL/repr/master/_shiny/app2.R' target='_blank' style='color: #bc7777;'>script</a></li>
+              <li> Genere una aplicación en Shiny</li>
             </ul>
           ")
       )
