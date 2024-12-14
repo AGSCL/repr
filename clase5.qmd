@@ -1,0 +1,41 @@
+---
+title: "Clase 5: Shiny y Máquinas virtuales"
+date: "`r withr::with_locale(new = c('LC_TIME' = 'es_ES'), code = format(Sys.time(), '%B %d, %Y'))`"
+format: 
+  revealjs:
+    theme: mylibs/theme.css
+    transition: slide
+    slide-number: true
+    css: 
+      - mylibs/animate.min.css
+      - mylibs/ninjutsu.css
+    incremental: true
+    self-contained: true # Embeds all assets locally
+    lib_dir: libs
+    navigation-mode: linear # Disable scroll-based navigation
+    ratio: 16:9 # Slide aspect ratio
+    include-after-body: 
+      - mylibs/collapseoutput.js
+      - mylibs/zoom.html
+      - mylibs/timer.html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
