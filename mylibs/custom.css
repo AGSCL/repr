@@ -1,0 +1,33 @@
+.title {
+  font-size: 120px !important;
+  color: #bc7777 !important;
+}
+
+.quarto-title-author-name {
+  font-size: 100px;
+  color: #333333 !important;
+}
+
+.date {
+  font-size: 80px;
+  color: #555555 !important;
+}
+.reveal .slide-number {
+    position: absolute !important;
+    bottom: 50px !important; /* Distance from the bottom of the slide */
+    right: 20px !important;  /* Distance from the right edge of the slide */
+    font-size: 16px !important; /* Adjust size if needed */
+    color: #333; /* Optional: Change color */
+}
+#title-slide::after {
+    content: "Código en https://github.com/AGSCL/repr"; /* Texto del footer */
+    display: block;
+    position: absolute;
+    bottom: -50px; /* Ajusta la distancia desde la parte inferior, menos, mas abajo */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%);
+    font-size: 20px; /* Tamaño del texto */
+    color: #bc7777;  /* Color del texto */
+    font-weight: bold; /* Aplica negrita */
+    text-align: center;
+}

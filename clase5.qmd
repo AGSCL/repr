@@ -3,19 +3,23 @@ title: "Clase 5: Shiny y Máquinas virtuales"
 date: last-modified
 date-format: "D [d]e MMM, YYYY"
 author: "Andrés González-Santa Cruz"
+subtitle: "Creación de aplicaciones interactivas en R"
 institute: "Estudiante Doctorado en Salud Pública, Investigador joven, nDP"
 format: 
   revealjs:
     theme: "mylibs/theme2.scss"
     transition: slide
-    slide-number: true
     css: 
       - mylibs/animate.min.css
       - mylibs/ninjutsu.css
-      - mylibs/theme2.css
+      - mylibs/theme2.css #en verdad lo necesita
+      - mylibs/custom.css #con cuestiones de titulo
     width: 1600
     height: 900      
+    fig-cap-location: top
+    lightbox: auto
     lang: es
+    slide-number: true
     incremental: true
     self-contained: true # Embeds all assets locally
     navigation-mode: linear # Disable scroll-based navigation
@@ -27,80 +31,250 @@ format:
       - mylibs/timer.html
     pdf-export: true # Enable PDF export
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: "expandir para código"
 editor: source
 engine: knitr
 ---
 
-```{css , echo=F}
-.title {
-  font-size: 120px !important;
-  color: #bc7777 !important;
-}
-
-.quarto-title-author-name {
-  font-size: 100px;
-  color: #333333 !important;
-}
-
-.date {
-  font-size: 80px;
-  color: #555555 !important;
-}
-```
-
-::: footer
-[Código en: `r fontawesome::fa(name = "github")`](https://github.com/AGSCL/repr)
-:::
-
-
-## Qué es Shiny?
-
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
-
-## Bullets
+## Recordemos
 
 ```{r}
 #| echo: true
 #| code-fold: true
 #| code-summary: "expandir para código"
 #| fig-align: "center"
-# fac_enr %>% 
-#   filter(!is.na(avg_enr)) %>% 
-#   ggplot(aes(x = year, y = avg_enr, group = rank, color = rank)) +
-#   geom_line() +
-#   geom_point() +
-#   scale_color_brewer(type = "qual", palette = "Dark2") +
-#   labs(x = NULL, y = "Average enrollment",
-#        title = "Average undergraduate enrollment per rank over time") +
-#   theme_linedraw() +
-#   theme(panel.grid.major.x = element_blank(),
-#         axis.ticks = element_blank(),
-#         legend.title = element_blank(),
-#         legend.background = element_rect(fill = NA),
-#         legend.key = element_rect(fill = NA),
-#         legend.position = c(0.85, 0.82))
+#| warnings: false
+#| message: false
+if(!require(showtext)){install.packages("showtext")}
+if(!require(ggplot2)){install.packages("ggplot2")}
+
+# Activar showtext
+showtext_auto()
+
+# Agregar la fuente Oswald desde Google Fonts
+font_add_google(name = "Oswald", family = "Oswald")
+
+library(ggplot2)
+
+# Crear los datos
+data <- data.frame(
+  xstart = c(0, 0.2, 0.4, 0.6, 0.8),
+  xend = c(0.2, 0.4, 0.6, 0.8, 1),
+  ystart = rep(0, 5),
+  yend = rep(1, 5),
+  labels = c("Solo publicación", "Código", "Código y datos",
+             "Código y datos\nejecutables", "Replicación\ncompleta")
+)
+
+# Colores personalizados desde oscuro a claro
+#colors <- c("#555555", "#777777", "#999999", "#bbbbbb", "#dddddd")
+colors <- c("#4D4D4D", "#B03A2E", "#E74C3C", "#F1948A", "#FADBD8")
+
+# Crear el gráfico
+ggplot() +
+  # Dibujar las áreas
+    geom_rect(data = data, aes(xmin = xstart, xmax = xend, ymin = ystart, ymax = yend, fill = labels), color = NA) +
+  scale_fill_manual(values = colors) +
+  # Agregar las etiquetas dentro de las áreas
+  geom_text(data = data, aes(x = (xstart + xend) / 2, y = 0.5, label = labels), size = 6, family = "Oswald", color = "black") +
+  # Agregar flecha de reproducibilidad
+  annotate("segment", x = 0, xend = 1, y = -0.1, yend = -0.1, arrow = arrow(type = "closed", ends = "both"), color = "gray") +
+  annotate("text", x = 0.05, y = -0.15, label = "No\nreproducible", size = 5, hjust = 0.5, color = "#555555") +
+  annotate("text", x = .95, y = -0.15, label = "Estándar\nde oro", size = 5, hjust = 0.5, color = "#555555") +
+  # Ajustar límites y tema
+  scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.2, 1), expand = c(0, 0)) +
+  theme_void() +
+  theme(
+    legend.position = "none",
+    text = element_text(family = "Oswald"),
+    plot.background = element_rect(fill = "#ffffff", color = NA)
+  )
+
 ```
 
-When you click the **Render** button a document will be generated that includes:
+## Qué es Shiny?
 
--   Content authored with markdown
--   Output from executable code
+- **Shiny** es un paquete de R que permite construir aplicaciones web interactivas.
+- Ideal para la visualización de datos y análisis interactivos.
+- No requiere conocimientos avanzados de HTML o JavaScript.
+- Permite transformar análisis en herramientas interactivas.
+- Fácil integración en presentaciones con Quarto.
+- Ideal para comunicar hallazgos de manera dinámica.
 
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Para mí, esta no es tanto una herramienta de reproducibilidad, como de comunicación de resultados y al servicio de la ciencia abierta
 
 <!----
-#https://agscl.shinyapps.io/Resultados_Ponderados/
-#https://agscl.shinyapps.io/UploadFiles/
-#https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/
-#https://joachim-gassen.github.io/ExPanDaR/
-#https://melissavanbussel.shinyapps.io/quarto_theme_generator/
-#https://quarto.org/docs/presentations/revealjs/presenting.html
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
 ---->
+:::
+
+## Ejemplo
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r, echo=TRUE}
+if(!require(shiny)){install.packages("shiny")}
+
+ui <- fluidPage(
+  titlePanel("Ejemplo Shiny"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("num", "Elige un número:", 1, 100, 50)
+    ),
+    mainPanel(
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$num), col = "red", border = "white")
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.column width="50%"}
+
+```{r shinyejemplo}
+if(!require(magick)){install.packages("magick")}
+
+image_colorize(image_read(path = "_figs/shiny_ejemplo.png"),35,"gray")
+```
+:::
+
+::::
+
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Por qué creen que nos apareció ese mensaje?
+
+<!----
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
+---->
+:::
+
+## Algunos ejemplos externos
+
+- [Encuestas](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
+- [Resultados](https://agscl.shinyapps.io/Resultados_Ponderados/)
+- [Transformar archivos](https://agscl.shinyapps.io/UploadFiles/)
+- [ExPanDaR](ExPanDaR) y [EJemplo externo](https://carlosmendez777.shinyapps.io/short-project-explore-panel-interactively)
+- [Simulación modelos multiestado](https://ph-ivshiny.iowa.uiowa.edu/rpterson/MSDshiny/)
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Primer ejemplo, clases UDP. Necesito saber cuánto saben de R, pero también mostrarle las potencialidades. Entonces al inicio del curso hice una encuesta con `shinysurveys` y `googlesheets4`. Pero al margen de esto, puede ser super útil para hacer encuestas mega personalizadas, a veces introduciéndoles condicionales, etc. Ojo que se supone que Shiny por sí mismo no almacena información que el usuario ingrese. Se supone. Por eso lo integré con un spreadsheet de google.
+- Segundo ejemplo, más antiguo. Tenía una jefa que siempre que la veía me pedía que le entregara asociaciones distintas de su base de datos formateada para trabajar con muestras complejas. Es por eso que creé un módulo para analizar asociaciones bivariadas con `jsmodule` (principalmente a resultados médicos)
+- Colaboré un tiempo con el centro de estudios de la mujer, que era un centro muy antiguo y con personas de reputada trayectoria pero bastante tradicionales. Lo que ocurría es que la encuestadora siempre les pasaba los datos en formato Stata, y me pedían siempre que se los convirtiera a sav (SPSS). Entonces tuve que crear una para eso. Para eso usé `rio` para que las señoras suban la base original y esta aplicación las transformara.
+- No tengo una referencia directa de trabajos míos con esto porque es muy pesado y lo tuve que borrar. Pero esta aplicación es super útil para hacer a veces modelos multivariados (ej., regresiones ajustando por muchas variables o añadiendo muchos predictores)
+- **OJO**: De todas formas, siempre tengan cuidado con quien comparten sus datos cuando ingresan a un shiny
+<!----
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
+---->
+:::
+
+## Componentes
+
+
+
+:::: {.columns}
+
+::: {.column width="20%" .incremental}
+- UI
+- SERVER
+:::
+
+::: {.column width="80%" .fragment}
+
+```{r}
+if(!require(DiagrammeR)){install.packages("DiagrammeR")}
+
+grViz("
+digraph shiny_diagram {
+  rankdir=TB; // Dirección de arriba hacia abajo
+  
+  // Fondo general
+  bgcolor=white;
+
+  // Estilo de nodos
+  node [shape=box, style=filled, fontname=Helvetica, fontsize=14, color=gray90];
+
+  // Cluster UI
+  subgraph cluster_UI {
+    label = 'UI (Frontend)';
+    color = '#d1e0e0'; // Color del borde del cluster
+    style = rounded;
+    fillcolor = '#f7f9f9'; // Fondo claro
+    
+    UI_input [label = 'Input', fillcolor='#e6f2f2', color='#8bbebd'];
+    UI_output [label = 'Output', fillcolor='#e6f2f2', color='#8bbebd'];
+  }
+
+  // Nodo del servidor
+  SERVER [label = 'Server (Backend)', shape=ellipse, fillcolor='#d9f4f3', color='#589f99', style=solid];
+
+  // Conexiones con etiquetas
+  UI_input -> SERVER [label = 'Datos del usuario', fontcolor=black, fontsize=12];
+  SERVER -> UI_output [label = 'Resultados', fontcolor=black, fontsize=12];
+
+  // Alineación lógica
+  {rank=same; UI_input; UI_output;}
+}
+")
+
+```
+
+
+:::
+
+::::
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- **UI** La interfaz de usuario. El front-end, la parte bonita, los botonos, etc. Eso es lo que definimos y personalizamos.
+- Lo componen aspectos como `fluidPage()` para dar un diseño que se adapta a la pantalla, `titlePanel()` (título aplicación), o un panel lateral `sidebarLayout()` que le podemos añadir, vs. el principal `mainPanel()`.
+
+- **SERVER** La lógica detrás (back-end), lo que trabaja para generar los gráficos. Requiere un `input$` que es el botoncito, etc., que está en UI y apretó el usuario, más los códigos internos; más un `output` que es la salida que mostrará com resultado dinámico. Regularmente los `output` son procesados por los `render`, en este caso, `renderPlot`.
+
+- Lo que hace ShinyApp es que los conecta generando una plicación funcional.
+<!----
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
+---->
+:::
+
+## Manos a la obra
+
+[Acceda aquí](https://agscl2.shinyapps.io/PasosShiny/)
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Ahora vamos a ir a mi aplicación que les preparé
+
+<!----
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
+---->
+:::
+
+## Máquinas virtuales {background-gradient="linear-gradient(to bottom, #555555, #bc7777)"}
+
+<!----
+
+#https://quarto.org/docs/presentations/revealjs/presenting.html
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
+---->
+
+## Fuentes
+
+- Mendez Carlos (2020). An interactive exploration of panel data: Using the package ExPanDaR to generate interactive web applications. R Studio/RPubs. Available at https://rpubs.com/quarcs-lab/explore-panel-interactively
+- Chang, W., Borges Ribeiro, B., & Grolemund, G. (2023). Mastering Shiny: Building Interactive Applications in R. O'Reilly Media.
+- Wickham, H., Chang, W., Henry, L., Pedersen, T., Takahashi, K., Wilke, C., ... & Yutani, H. (2023). Shiny: Web Application Framework for R. Disponible desde https://shiny.rstudio.com/.

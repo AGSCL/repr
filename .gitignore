@@ -147,3 +147,6 @@ ej_clase?.Rmd
 #eliminar información de mi correo
 *creds_file
 creds_file
+
+#exclude files
+clase5_files/*
