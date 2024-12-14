@@ -151,27 +151,94 @@ nav_panel(
     card(
       card_header("Crear una App Shiny"),
       card_body(
-        HTML('
-            <h4 style="color: #555555;">Pasos en RStudio</h4>
-            <img src="https://shiny.posit.co/r/_w_80270736/images/new-shiny-project.png"
-                 style="width: 100%; margin-bottom: 20px;"
-                 alt="Crear nueva app Shiny">
-            <p style="color: rgba(0, 0, 0, 0.8);">Para crear una nueva app Shiny:</p>
-            <ol style="color: rgba(0, 0, 0, 0.8);">
-              <li>File → New Project → New Directory → Shiny Application</li>
-              <li>O File → New File → Shiny Web App</li>
-            </ol>
-            <img src="https://shiny.posit.co/r/_w_80270736/images/running-shiny-project.png"
-                 style="width: 100%; margin-bottom: 20px;"
-                 alt="Ejecutar app Shiny">
-            <p style="color: rgba(0, 0, 0, 0.8);">Para ejecutar la app:</p>
-            <ul style="color: rgba(0, 0, 0, 0.8);">
-              <li>Clic en el botón "Run App" en la barra superior del editor</li>
-              <li>O usa el comando <code>runApp()</code> en la consola</li>
-            <p>
-            <p style="color: rgba(139, 0, 0, 0.8);">En .gitignore, excluir los secrets (pone en peligro su cuenta)</p>
-            </ul>
-          ')
+              HTML('
+          <h4 style="color: #555555;">Pasos en RStudio</h4>
+          <a href="https://github.com/AGSCL/repr/raw/master/_figs/paso1_shiny.png" target="_blank">
+              <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso1_shiny.png"
+                   style="width: 20%; margin-bottom: 20px;"
+                   alt="Crear nueva app Shiny">
+          </a>
+          <p style="color: rgba(0, 0, 0, 0.8);">Para crear una nueva app Shiny:</p>
+          <ol style="color: rgba(0, 0, 0, 0.8);">
+            <li>File → New Project → New Directory → Shiny Application</li>
+            <li>O File → New File → Shiny Web App</li>
+          </ol>
+          <a href="https://github.com/AGSCL/repr/raw/master/_figs/paso2_shiny.png" target="_blank">
+              <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso2_shiny.png"
+                   style="width: 20%; margin-bottom: 20px;"
+                   alt="Ejecutar app Shiny">
+          </a>
+          <p style="color: rgba(0, 0, 0, 0.8);">Para ejecutar la app:</p>
+          <ul style="color: rgba(0, 0, 0, 0.8);">
+            <li>Clic en el botón "Run App" en la barra superior del editor</li>
+            <li>O usa el comando <code>runApp()</code> en la consola</li>
+          </ul>
+          <a href="https://github.com/AGSCL/repr/raw/master/_figs/paso3_shiny.png" target="_blank">
+              <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso3_shiny.png"
+                   style="width: 20%; margin-bottom: 20px;"
+                   alt="Publicar app Shiny">
+          </a>
+          <p style="color: rgba(0, 0, 0, 0.8);">
+              Para publicar una app Shiny en <code>shinyapps.io</code>:
+          </p>
+          <ol style="color: rgba(0, 0, 0, 0.8);">
+              <li>Haz clic en el botón <b>"Publish"</b> en la parte superior del editor de RStudio.</li>
+              <li>Selecciona la cuenta desde donde deseas publicar. Si no tienes una cuenta, usa la opción <b>"Add new account"</b> (resaltada en la imagen) para crear una o vincular una existente.</li>
+              <li>Asigna un título a tu aplicación en el campo <b>Title</b>.</li>
+              <li>Clic en el botón <b>Publish</b> para subir la aplicación al servidor.</li>
+          </ol>
+          <a href="/https://github.com/AGSCL/repr/raw/master/_figs/paso4_shiny.png" target="_blank">
+              <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso4_shiny.png"
+                   style="width: 20%; margin-bottom: 20px;"
+                   alt="Gestionar tokens en shinyapps.io">
+          </a>
+          <p style="color: rgba(0, 0, 0, 0.8);">
+              En <code>shinyapps.io</code>, puedes gestionar tus <b>tokens</b> para la autenticación y publicación de tus aplicaciones. Los tokens permiten que tu cuenta se conecte a las herramientas de RStudio de forma segura.
+          </p>
+          <ol style="color: rgba(0, 0, 0, 0.8);">
+              <li>Accede a la sección <b>Account → Tokens</b> en el menú de navegación izquierdo.</li>
+              <li>Aquí verás una lista de los tokens existentes. Cada token tiene un identificador único y un secreto (resaltado).</li>
+              <li>Para crear un nuevo token, haz clic en el botón verde <b>"Add Token"</b>.</li>
+              <li>Puedes visualizar el secreto de un token existente haciendo clic en <b>"Show"</b>, pero ten cuidado de no exponer esta información públicamente.</li>
+              <li>Para eliminar un token, utiliza el botón rojo <b>"Delete"</b>.</li>
+          </ol>
+          <p style="color: rgba(139, 0, 0, 0.8);">
+              Nota: Asegúrate de agregar los secretos en tu archivo <code>.gitignore</code> para evitar comprometer la seguridad de tu cuenta.
+          </p>
+          <a href="https://github.com/AGSCL/repr/raw/master/_figs/paso5_shiny.png" target="_blank">
+              <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso5_shiny.png"
+                   style="width: 20%; margin-bottom: 20px;"
+                   alt="Configurar rsconnect para shinyapps.io">
+          </a>
+          <p style="color: rgba(0, 0, 0, 0.8);">
+              Para desplegar una aplicación Shiny en <code>shinyapps.io</code>, necesitas configurar tu cuenta utilizando el paquete <code>rsconnect</code> en R o <code>rsconnect-python</code> en Python. Este proceso requiere un <b>token</b> y un <b>secret</b> para autenticarte y vincular tu cuenta.
+          </p>
+          <ol style="color: rgba(0, 0, 0, 0.8);">
+              <li>Haz clic en <b>"Show"</b> para revelar el <b>secret</b> asociado a tu token (resaltado en la imagen).</li>
+              <li>Copia el comando que aparece en la pestaña <b>With R</b> o <b>With Python</b>.</li>
+              <li>Pega el comando en tu consola de R o Python para autenticar tu cuenta. En R, el comando tiene el formato:
+                  <pre style="background-color: #f8f8f8; padding: 2px; border: .5px solid #ddd;">
+rsconnect::setAccountInfo(name = "nombre_cuenta",
+                          token = "tu_token",
+                          secret = "tu_secret")
+                  </pre>
+              </li>
+              <li>Una vez ejecutado el comando, no necesitarás configurarlo nuevamente en ese entorno.</li>
+          </ol>
+          <a href="https://github.com/AGSCL/repr/raw/master/_figs/paso7_shiny.png" target="_blank">
+              <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso7_shiny.png"
+                   style="width: 20%; margin-bottom: 20px;"
+                   alt="Conectar cuenta de shinyapps.io en RStudio">
+          </a>
+              <ol style="color: rgba(0, 0, 0, 0.8);">
+              <li>Copia el comando proporcionado (incluye el <b>token</b> y el <b>secret</b>) y pégalo en tu consola de RStudio. El comando tiene este formato:
+              </li>
+              <li>Una vez autenticado, podrás publicar tus aplicaciones Shiny directamente desde RStudio.</li>
+              </ol>
+          <p style="color: rgba(139, 0, 0, 0.8);">
+              Nota: Nunca compartas tu <b>token</b> ni tu <b>secret</b> públicamente. Asegúrate de excluir esta información del control de versiones usando un archivo <code>.gitignore</code>.
+          </p>
+        ')
       )
     ),
     card(
@@ -182,7 +249,8 @@ nav_panel(
               <li><a href='https://shiny.posit.co/r/getstarted/' target='_blank' style='color: #bc7777;'>Tutorial oficial de Shiny</a></li>
               <li><a href='https://shiny.posit.co/r/gallery/' target='_blank' style='color: #bc7777;'>Galería de ejemplos</a></li>
               <li><a href='https://mastering-shiny.org/' target='_blank' style='color: #bc7777;'>Libro: Mastering Shiny</a></li>
-              <li><a href='https://gallery.shinyapps.io/assistant/' target='_blank' style='color: #bc7777;'>Libro: Asistente Shiny</a></li>
+              <li><a href='https://gallery.shinyapps.io/assistant/' target='_blank' style='color: #bc7777;'>Asistente Shiny (AI)</a></li>
+              <li><a href='https://tilburgsciencehub.com/topics/visualization/data-visualization/dashboarding/shinydashboard/' target='_blank' style='color: #bc7777;'>shinydashboard</a></li>
             </ul>
           ")
       )
