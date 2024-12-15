@@ -48,18 +48,26 @@ rm(list = ls())
 ## Recordemos
 
 ```{r}
-#| echo: true
-#| code-fold: true
-#| code-summary: "expandir para código"
-#| fig-align: "center"
-#| warnings: false
-#| message: false
+#| include: false
+#| results: hide
 
 rm(list=ls());gc()
 
 if(!require(showtext)){install.packages("showtext")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "expandir para código"
+#| fig-align: "center"
+#| warnings: false
+#| message: false
+#| fig.showtext: true
+#| fig.cap: "Esquema"
 # Activar showtext
 showtext_auto()
 
@@ -91,8 +99,8 @@ ggplot() +
   geom_text(data = data, aes(x = (xstart + xend) / 2, y = 0.5, label = labels), size = 6, family = "Oswald", color = "black") +
   # Agregar flecha de reproducibilidad
   annotate("segment", x = 0, xend = 1, y = -0.1, yend = -0.1, arrow = arrow(type = "closed", ends = "both"), color = "gray") +
-  annotate("text", x = 0.05, y = -0.15, label = "No\nreproducible", size = 5, hjust = 0.5, color = "#555555") +
-  annotate("text", x = .95, y = -0.15, label = "Estándar\nde oro", size = 5, hjust = 0.5, color = "#555555") +
+  annotate("text", x = 0.1, y = -0.15, label = "No\nreproducible", size = 5, hjust = 0.5, color = "#555555") +
+  annotate("text", x = .9, y = -0.15, label = "Estándar\nde oro", size = 5, hjust = 0.5, color = "#555555") +
   # Ajustar límites y tema
   scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-0.2, 1), expand = c(0, 0)) +
@@ -180,7 +188,7 @@ image_colorize(image_read(path = "_figs/shiny_ejemplo.png"),35,"gray")
 - [Encuestas](https://agscl2.shinyapps.io/EncuestaCursoUDPMMIS2024/)
 - [Resultados](https://agscl.shinyapps.io/Resultados_Ponderados/)
 - [Transformar archivos](https://agscl.shinyapps.io/UploadFiles/)
-- [ExPanDaR](ExPanDaR) y [EJemplo externo](https://carlosmendez777.shinyapps.io/short-project-explore-panel-interactively)
+- [ExPanDaR](ExPanDaR) y [Ejemplo externo](https://carlosmendez777.shinyapps.io/short-project-explore-panel-interactively)
 - [Simulación modelos multiestado](https://ph-ivshiny.iowa.uiowa.edu/rpterson/MSDshiny/)
 
 ::: {.notes}
@@ -266,8 +274,11 @@ digraph shiny_diagram {
 
 ## Manos a la obra
 
+::: {.center}
+
 [Acceda aquí](https://agscl2.shinyapps.io/PasosShiny/)
-data/ejemplo_datos.RData")
+
+:::
 
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`

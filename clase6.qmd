@@ -40,14 +40,15 @@ engine: knitr
 ## Recordemos
 
 ```{r}
-#| echo: true
+#| include: false
 #| code-fold: true
-#| code-summary: "expandir para código"
 #| fig-align: "center"
 #| warnings: false
 #| message: false
+#| results: hide
 
 rm(list=ls());gc()
+
 if(!require(showtext)){install.packages("showtext")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(magick)){install.packages("magick")}
@@ -59,6 +60,19 @@ showtext_auto()
 
 # Agregar la fuente Oswald desde Google Fonts
 font_add_google(name = "Oswald", family = "Oswald")
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "expandir para código"
+#| fig-align: "center"
+#| warnings: false
+#| message: false
+#| results: hide
+#| fig.showtext: true
+#| fig.cap: "Esquema"
 
 library(ggplot2)
 
@@ -85,8 +99,8 @@ ggplot() +
   geom_text(data = data, aes(x = (xstart + xend) / 2, y = 0.5, label = labels), size = 6, family = "Oswald", color = "black") +
   # Agregar flecha de reproducibilidad
   annotate("segment", x = 0, xend = 1, y = -0.1, yend = -0.1, arrow = arrow(type = "closed", ends = "both"), color = "gray") +
-  annotate("text", x = 0.05, y = -0.15, label = "No\nreproducible", size = 5, hjust = 0.5, color = "#555555") +
-  annotate("text", x = .95, y = -0.15, label = "Estándar\nde oro", size = 5, hjust = 0.5, color = "#555555") +
+  annotate("text", x = 0.1, y = -0.15, label = "No\nreproducible", size = 5, hjust = 0.5, color = "#555555") +
+  annotate("text", x = .9, y = -0.15, label = "Estándar\nde oro", size = 5, hjust = 0.5, color = "#555555") +
   # Ajustar límites y tema
   scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-0.2, 1), expand = c(0, 0)) +
@@ -99,18 +113,59 @@ ggplot() +
 
 ```
 
-## Máquinas virtuales / Contenedores {background-gradient="linear-gradient(to bottom, #555555, #bc7777)"} 
+## Máquinas virtuales / Contenedores {.nonincremental}
 
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig.cap: "Alcances de cada plataforma"
+magick::image_read(path = "_figs/container.png")
+```
+
+<div style="text-align: center; font-size: small; font-style: italic;"> Fuente: <a href="https://frederikaust.com/reproducible-research-practices-workshop/slides/7_Other_Topics.html#63" target="_blank">Reproducible research workflows for psychologists</a> </div>
+
+:::
+
+::: {.column width="50%"}
+
+::: {.nonincremental}
+- **Docker**, contenedor, existe  [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+-  **Rocker** (Docker para entornos R) [enlace](https://rocker-project.org/)
+
+- Otras alternativas: [DataLab](https://www.datacamp.com/datalab/sign_in), [Code Ocean](https://codeocean.com/), [Kaggle Notebooks](https://www.kaggle.com/code/); [JupyterLab](https://jupyter.org/try-jupyter/lab/) ([Ver tutorial](https://docs.ncsa.illinois.edu/systems/delta/en/latest/user_guide/ood/custom-r.html)), [VirtualBox](https://www.osboxes.org/lubuntu/#lubuntu-24-04-info)
+
+```{r }
+#| out-width: "10%"
+magick::image_colorize(magick::image_read(path = "_figs/datalab.png"),35,"white")
+```
+```{r }
+#| out-width: "10%"
+magick::image_colorize(magick::image_read(path = "_figs/kaggle_notebook.png"),35,"white")
+```
+
+:::
+:::
+
+::::
 
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
-- Las máquinas virtuales virtualizan a nivel de hardware, todo el sistema operativo; 
+- Las máquinas virtuales virtualizan a nivel de hardware, todo el sistema operativo; por ej., VirtualBox, permite tener un SO desde 0, en el que hay que instalarle R, etc. Este SO debiese quedarse igual hasta 2090, siempre que no le actualicemos los paquetes estadísticos de R adentro, etc. Es un paso tan largo que no vale la pena que les explique cómo generar este SO virtual. Mejor saber que existe y los interesad@s me contactarán posteriormente.
+
+- En la imagen vemos los alcances de cada plataforma.
+
 - Muchos utilizan diversios servicios de computación en línea
 ¿Quiénes son verdaderas VMs?
 VirtualBox: Sí, es una herramienta para crear máquinas virtuales completas.
 Saturn Cloud, Posit Cloud: Utilizan VMs en el backend, pero no son VMs desde el punto de vista del usuario.
 ¿Quiénes no son VMs?
 Google Colab y Code Ocean: Utilizan contenedores, no VMs completas.
+
+- **Docker**: CONTENEDOR. Al encapsular R, sus paquetes y las dependencias del sistema dentro de un contenedor, se garantiza que el entorno de desarrollo, prueba y producción sea idéntico. Esto reduce problemas comunes de incompatibilidad entre sistemas operativos, versiones de paquetes o librerías del sistema.
+
+- El proyecto **Rocker** ofrece contenedores Docker listos para usar con R, diseñados para garantizar entornos reproducibles, portables y consistentes, ideales para desarrollo, pruebas y colaboración en ciencia de datos. Cada imagen que tiene un R o Rstudio Server ya preinstalado para que sea más fácil. A veces se pueden correr en servidores externos (sujeto a pagar, claro)
 
 <!----
 #Press the S key (or use the Navigation Menu) to show the presentation speaker view:
@@ -237,6 +292,21 @@ magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud4.png"),35,"
 ```{r}
 magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud5.png"),35,"white")
 ```
+### Paso 6
+
+#### Subimos los datos
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud6.png"),35,"white")
+```
+
+### Paso 7
+
+#### Generamos los mismos resultados
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud7.png"),35,"white")
+```
 
 :::
 
@@ -254,9 +324,52 @@ magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud5.png"),35,"
 ## Posit Cloud
 
 
+::: {.panel-tabset}
+
+### Paso 1
+
+- [Enlace](https://posit.cloud/)
+
+#### Entramos y generamos un nuevo proyecto
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/posit_cloud1.png"),35,"white")
+```
+
+### Paso 2
+
+#### Subimos los datos
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/posit_cloud2.png"),35,"white")
+```
+
+### Paso 3
+
+#### Abrimos los datos
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/posit_cloud3.png"),35,"white")
+```
+
+### Paso 4
+
+#### Desplegamos el código
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/posit_cloud4.png"),35,"white")
+```
+
+:::
+
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar RStudio y análisis en R.
+- principalmente centrado en R
+- ojo que no siempre está disponible la última versión de R (aunque creo que eso ocurre también con los otros)
+- ojo que de todas formas, en todos los otros, es necesario utilizar un control de las versiones d elos paquetes. De lo contrario, el entorno de trabajo no será estable e irá cambiando. Basta con que un paquete estadísitco se actualice o sus dependencias para que su proyecto deje de ser reproducible. Por ejemplo, yo usé `long_panel` mucho tiempo. El problema es que meses después intento volver a desplegar mi código y me encuentro con que el paquete se había actualizado, y ahora pedía otros argumentos distintos  alos que había puesto (o en otro formato). Entonces no me corrría.
+- al abrir los datos, podemos ver su ubicación.
+- ojo con los recursos. En este caso vienen por defecto, pero son MUY limitados.
 :::
 
 ## GitHub
@@ -304,4 +417,6 @@ el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar 
 
 ## Fuentes
 
-- sad
+- Breuer, J., & Aust, F. (2022, 27-28 de Abril). Reproducible research workflows for psychologists: Other topics in reproducible research [Presentation]. KU Leuven. Obtenido desde: https://frederikaust.com/reproducible-research-practices-workshop/slides/7_Other_Topics.html
+
+
