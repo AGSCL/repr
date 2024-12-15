@@ -9,12 +9,15 @@ Desktop ([enlace](https://desktop.github.com/)) y Quarto
 
 Esta página está compuesta de los siguientes tópicos:
 
--   **Clase 1: ¿Qué entenderemos por reproducibilidad?**
-    [.pdf](./man/clase1.pdf)
+- **Clase 1: ¿Qué entenderemos por reproducibilidad?** [.pdf](./man/clase1.pdf)
 
 - **Clases 2y3: Arquitectura y normalización** [.pdf](./man/clase2y3.pdf)
 
 - **Clase 4: Informes dinámicos** [.pdf](./man/clase4.pdf)
+
+- **Clase 5: Informes en Shiny ** [.html](./clase5.html)
+
+- **Clase 6: Máquinas virtuales y GitHub ** [.html](./clase6.html)
     
 ## Requisitos de software
 

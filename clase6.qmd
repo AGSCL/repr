@@ -1,0 +1,207 @@
+---
+title: "Clase 6: Máquinas virtuales, Contenedores y GitHub"
+date: last-modified
+date-format: "D [d]e MMM, YYYY"
+author: "Andrés González-Santa Cruz"
+subtitle: "Diplomado en Data Science para las Ciencias Sociales" #CUIDADO CON TILDES
+institute: "Estudiante Doctorado en Salud Pública, Investigador joven, nDP"
+format: 
+  revealjs:
+    theme: "mylibs/theme2.scss"
+    transition: slide
+    css: 
+      - mylibs/animate.min.css
+      - mylibs/ninjutsu.css
+      - mylibs/theme2.css #en verdad lo necesita
+      - mylibs/custom.css #con cuestiones de titulo
+    width: 1600
+    height: 900      
+    fig-cap-location: top
+    lightbox: auto
+    lang: es
+    slide-number: true
+    incremental: true
+    self-contained: true # Embeds all assets locally
+    navigation-mode: linear # Disable scroll-based navigation
+    logo: "_style/cropped-logotipo_fsch.png"
+    ratio: 16:9 # Slide aspect ratio
+    include-after-body: 
+      - mylibs/collapseoutput.js
+      - mylibs/zoom.html
+      - mylibs/timer.html
+    pdf-export: true # Enable PDF export
+    code-fold: true
+    code-summary: "expandir para código"
+editor: source
+engine: knitr
+---
+
+## Recordemos
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "expandir para código"
+#| fig-align: "center"
+#| warnings: false
+#| message: false
+if(!require(showtext)){install.packages("showtext")}
+if(!require(ggplot2)){install.packages("ggplot2")}
+if(!require(magick)){install.packages("magick")}
+if(!require(knitr)){install.packages("knitr")}
+
+
+# Activar showtext
+showtext_auto()
+
+# Agregar la fuente Oswald desde Google Fonts
+font_add_google(name = "Oswald", family = "Oswald")
+
+library(ggplot2)
+
+# Crear los datos
+data <- data.frame(
+  xstart = c(0, 0.2, 0.4, 0.6, 0.8),
+  xend = c(0.2, 0.4, 0.6, 0.8, 1),
+  ystart = rep(0, 5),
+  yend = rep(1, 5),
+  labels = c("Solo publicación", "Código", "Código y datos",
+             "Código y datos\nejecutables", "Replicación\ncompleta")
+)
+
+# Colores personalizados desde oscuro a claro
+#colors <- c("#555555", "#777777", "#999999", "#bbbbbb", "#dddddd")
+colors <- c("#4D4D4D", "#B03A2E", "#E74C3C", "#F1948A", "#FADBD8")
+
+# Crear el gráfico
+ggplot() +
+  # Dibujar las áreas
+    geom_rect(data = data, aes(xmin = xstart, xmax = xend, ymin = ystart, ymax = yend, fill = labels), color = NA) +
+  scale_fill_manual(values = colors) +
+  # Agregar las etiquetas dentro de las áreas
+  geom_text(data = data, aes(x = (xstart + xend) / 2, y = 0.5, label = labels), size = 6, family = "Oswald", color = "black") +
+  # Agregar flecha de reproducibilidad
+  annotate("segment", x = 0, xend = 1, y = -0.1, yend = -0.1, arrow = arrow(type = "closed", ends = "both"), color = "gray") +
+  annotate("text", x = 0.05, y = -0.15, label = "No\nreproducible", size = 5, hjust = 0.5, color = "#555555") +
+  annotate("text", x = .95, y = -0.15, label = "Estándar\nde oro", size = 5, hjust = 0.5, color = "#555555") +
+  # Ajustar límites y tema
+  scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.2, 1), expand = c(0, 0)) +
+  theme_void() +
+  theme(
+    legend.position = "none",
+    text = element_text(family = "Oswald"),
+    plot.background = element_rect(fill = "#ffffff", color = NA)
+  )
+
+```
+
+## Máquinas virtuales / Contenedores {background-gradient="linear-gradient(to bottom, #555555, #bc7777)"} 
+
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Las máquinas virtuales virtualizan a nivel de hardware, todo el sistema operativo; 
+- Muchos utilizan diversios servicios de computación en línea
+
+<!----
+#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
+---->
+:::
+
+
+## Colab
+
+- [Enlace](https://colab.research.google.com/)
+
+- [Datos]("https://github.com/AGSCL/repr/raw/master/data/ejemplo_datos.RData")
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Google Colab en general es muy útil para bases de datos pequeñas
+- Lo vieron con René
+- Permite conectarse con Github
+
+:::
+
+::: {.panel-tabset}
+
+### Paso 1
+
+#### Entramos
+
+```{r}
+image_colorize(image_read(path = "_figs/colab1.png"),35,"white")
+```
+
+### Paso 2
+
+- Cambiamos el entorno de ejecución (1)
+
+```{r}
+image_colorize(image_read(path = "_figs/colab2.png"),35,"white")
+```
+
+### Paso 3
+
+- Cambiamos el entorno de ejecución (2)
+
+```{r}
+image_colorize(image_read(path = "_figs/colab3.png"),35,"white")
+```
+
+### Paso 4
+
+- Desplegamos el código (1)
+
+```{r}
+image_colorize(image_read(path = "_figs/colab4.png"),35,"white")
+```
+
+### Paso 5
+
+- Desplegamos el código (2)
+
+```{r}
+image_colorize(image_read(path = "_figs/colab5.png"),35,"white")
+```
+
+:::
+
+
+
+## GitHub
+
+## Github actions
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Presentar mi problema
+- Se le define como un runner, que ejecuta flujos de trabajo en maquinas virtuales de Azure (Microsoft). 
+- Es menos (pero menos complicado) que un contenedor, porque despliega trabajos (ej., )
+- Tiene los siguientes SO's: Ubuntu: ubuntu-latest, ubuntu-20.04, etc. / Windows: windows-latest, windows-2019, etc. / macOS: macos-latest, macos-11, etc.
+- Se despliega en archivos YAML [enlace](https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml)
+
+- **1era**: Hacemos click en new notebook. Notebook, que es.
+
+:::
+
+<!----
+#https://quarto.org/docs/presentations/revealjs/presenting.html
+#Explicar cómo aprendí GitHUb: https://fondecytacc.github.io/paperestallido/
+---->
+<!-- AWS Cloud, Code Ocean, Google Colab, Saturn Cloud, Rstudio Cloud, Github Actions, entre otras. -->
+<!-- -	Mi primer repositorio GitHub -->
+<!-- - -	Contexto: control de versiones -->
+<!-- - -	Flujo de trabajo -->
+<!-- - -	Elementos -->
+<!-- - -	Acciones -->
+<!-- - -	GitHub Pages -->
+
+<!-- - -	Mostrar potencialidades GitHub, GitHub actions: nowcasting-->
+<!-- https://agscl.github.io/proc_seleccion/poster.html -->
+<!-- https://agscl.github.io/proc_seleccion/proy_proc_sel.html -->
+
+## Fuentes
+
+- sad

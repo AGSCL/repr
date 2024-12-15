@@ -1,0 +1,134 @@
+---
+title: "Ejemplo semi-interactivo"
+author: "Profesor: Andres Gonzalez-Santa Cruz y Jose Ruiz-Tagle"
+subtitle: "Diplomado en Data Science para las Ciencias Sociales" #CUIDADO CON TILDES
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+encoding: utf-8
+output:
+  fidelius::html_password_protected:
+    style:
+      button_text: "Ingresar clave"
+    password: !expr as.character(read.table(paste0(gsub("repr","",getwd()),"passej5.txt"), quote='\"',comment.char=''))
+    preview: false
+    hint: ""
+    bundle: true
+    output_format: 
+      rmarkdown::html_document:
+        toc: true # table of content true
+        toc_depth: 5  # upto three depths of headings (specified by #, ## and ###)
+        toc_float: true
+---
+
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+```{r 0, echo=T, message=T, error=T, eval=T}
+rm(list = ls())
+if(!require(devtools)){install.packages("devtools", type = "win.binary", dependencies=T)}
+if(!require(rcanvas)){devtools::install_github("daranzolin/rcanvas")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(kableExtra)){install.packages("kableExtra")}
+if(!require(fidelius)){install.packages("fidelius")}
+if(!require(d3r)){install.packages("d3r")}
+if(!require(htmlwidgets)){install.packages("htmlwidgets")}
+if(!require(htmltools)){install.packages("htmltools")}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r pressure, echo=FALSE}
+# Load required libraries
+library(htmlwidgets)
+
+# D3.js code as a JavaScript string
+d3_script <- "
+function renderD3(elementId, data) {
+  // Remove any existing chart in the element
+  d3.select(`#${elementId}`).selectAll('*').remove();
+
+  // Chart dimensions and margins
+  const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+  const width = 600 - margin.left - margin.right;
+  const height = 400 - margin.top - margin.bottom;
+
+  // Append SVG to the container
+  const svg = d3.select(`#${elementId}`)
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', `translate(${margin.left},${margin.top})`);
+
+  // X and Y scales
+  const x = d3.scaleBand()
+    .domain(data.map(d => d.label))
+    .range([0, width])
+    .padding(0.1);
+
+  const y = d3.scaleLinear()
+    .domain([0, d3.max(data, d => d.value)])
+    .range([height, 0]);
+
+  // X and Y axes
+  svg.append('g')
+    .attr('transform', `translate(0,${height})`)
+    .call(d3.axisBottom(x));
+
+  svg.append('g')
+    .call(d3.axisLeft(y));
+
+  // Bars
+  const bars = svg.selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('x', d => x(d.label))
+    .attr('y', d => y(d.value))
+    .attr('width', x.bandwidth())
+    .attr('height', d => height - y(d.value))
+    .attr('fill', '#69b3a2');
+
+  // Slider for bar width adjustment
+  const slider = d3.select(`#${elementId}`)
+    .append('input')
+    .attr('type', 'range')
+    .attr('min', 0.1)
+    .attr('max', 1)
+    .attr('step', 0.1)
+    .attr('value', 0.1)
+    .on('input', function() {
+      const newPadding = +this.value;
+      x.padding(newPadding);
+      bars.attr('x', d => x(d.label)).attr('width', x.bandwidth());
+    });
+}
+
+// Sample data
+const data = [
+  { label: 'A', value: 10 },
+  { label: 'B', value: 20 },
+  { label: 'C', value: 30 },
+  { label: 'D', value: 40 },
+  { label: 'E', value: 50 }
+];
+
+// Render the chart on page load
+document.addEventListener('DOMContentLoaded', () => {
+  renderD3('d3-container', data);
+});
+"
+
+# Create an HTML widget
+htmlwidgets::createWidget(
+  name = "d3",
+  x = list(script = d3_script),
+  width = "100%",
+  height = 500,
+  package = "htmlwidgets",
+  elementId = "d3-container"
+)
+
+
+```

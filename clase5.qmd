@@ -1,9 +1,9 @@
 ---
-title: "Clase 5: Shiny y Máquinas virtuales"
+title: "Clase 5: Shiny"
 date: last-modified
 date-format: "D [d]e MMM, YYYY"
 author: "Andrés González-Santa Cruz"
-subtitle: "Creación de aplicaciones interactivas en R"
+subtitle: "Diplomado en Data Science para las Ciencias Sociales" #CUIDADO CON TILDES
 institute: "Estudiante Doctorado en Salud Pública, Investigador joven, nDP"
 format: 
   revealjs:
@@ -35,6 +35,13 @@ format:
 editor: source
 engine: knitr
 ---
+
+```{r}
+#| label: setup_theme0
+#| include: false
+rm(list = ls())
+```
+
 
 ## Recordemos
 
@@ -174,7 +181,7 @@ image_colorize(image_read(path = "_figs/shiny_ejemplo.png"),35,"gray")
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Primer ejemplo, clases UDP. Necesito saber cuánto saben de R, pero también mostrarle las potencialidades. Entonces al inicio del curso hice una encuesta con `shinysurveys` y `googlesheets4`. Pero al margen de esto, puede ser super útil para hacer encuestas mega personalizadas, a veces introduciéndoles condicionales, etc. Ojo que se supone que Shiny por sí mismo no almacena información que el usuario ingrese. Se supone. Por eso lo integré con un spreadsheet de google.
-- Segundo ejemplo, más antiguo. Tenía una jefa que siempre que la veía me pedía que le entregara asociaciones distintas de su base de datos formateada para trabajar con muestras complejas. Es por eso que creé un módulo para analizar asociaciones bivariadas con `jsmodule` (principalmente a resultados médicos)
+- Segundo ejemplo, más antiguo. Tenía una jefa que siempre que la veía me pedía que le entregara asociaciones distintas de su base de datos formateada para trabajar con muestras complejas. Es por eso que creé un módulo para analizar asociaciones bivariadas con `jsmodule` (principalmente a resultados médicos). Por ejemplo, con fidelius usted le puede poner una clave a su aplicación.
 - Colaboré un tiempo con el centro de estudios de la mujer, que era un centro muy antiguo y con personas de reputada trayectoria pero bastante tradicionales. Lo que ocurría es que la encuestadora siempre les pasaba los datos en formato Stata, y me pedían siempre que se los convirtiera a sav (SPSS). Entonces tuve que crear una para eso. Para eso usé `rio` para que las señoras suban la base original y esta aplicación las transformara.
 - No tengo una referencia directa de trabajos míos con esto porque es muy pesado y lo tuve que borrar. Pero esta aplicación es super útil para hacer a veces modelos multivariados (ej., regresiones ajustando por muchas variables o añadiendo muchos predictores)
 - **OJO**: De todas formas, siempre tengan cuidado con quien comparten sus datos cuando ingresan a un shiny
@@ -212,19 +219,19 @@ digraph shiny_diagram {
   // Cluster UI
   subgraph cluster_UI {
     label = 'UI (Frontend)';
-    color = '#d1e0e0'; // Color del borde del cluster
+    color = '#B03A2E'; // Color del borde del cluster
     style = rounded;
-    fillcolor = '#f7f9f9'; // Fondo claro
+    fillcolor = '#F1948A'; // Fondo claro
     
-    UI_input [label = 'Input', fillcolor='#e6f2f2', color='#8bbebd'];
-    UI_output [label = 'Output', fillcolor='#e6f2f2', color='#8bbebd'];
+    UI_input [label = 'Input', fillcolor='#F1948A', color='#B03A2E'];
+    UI_output [label = 'Output', fillcolor='#F1948A', color='#B03A2E'];
   }
 
   // Nodo del servidor
-  SERVER [label = 'Server (Backend)', shape=ellipse, fillcolor='#d9f4f3', color='#589f99', style=solid];
+  SERVER [label = 'Server (Backend)', shape=ellipse, fillcolor='#F1948A', color='#B03A2E', style=solid];
 
   // Conexiones con etiquetas
-  UI_input -> SERVER [label = 'Datos del usuario', fontcolor=black, fontsize=12];
+  UI_input -> SERVER [label = 'Datos del\nusuario', fontcolor=black, fontsize=12];
   SERVER -> UI_output [label = 'Resultados', fontcolor=black, fontsize=12];
 
   // Alineación lógica
@@ -255,6 +262,7 @@ digraph shiny_diagram {
 ## Manos a la obra
 
 [Acceda aquí](https://agscl2.shinyapps.io/PasosShiny/)
+data/ejemplo_datos.RData")
 
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
@@ -264,9 +272,6 @@ digraph shiny_diagram {
 #Press the S key (or use the Navigation Menu) to show the presentation speaker view:
 ---->
 :::
-
-## Máquinas virtuales {background-gradient="linear-gradient(to bottom, #555555, #bc7777)"}
-
 <!----
 
 #https://quarto.org/docs/presentations/revealjs/presenting.html

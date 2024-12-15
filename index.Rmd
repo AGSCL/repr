@@ -50,5 +50,7 @@ Esta página está compuesta de los siguientes tópicos:
 
 - **Clase 4: Informes dinámicos** [.pdf](./man/clase4.pdf)
 
-- **Clase 5-6: Informes en Shiny ** [.html](./clase5.html)
+- **Clase 5: Informes en Shiny ** [.html](./clase5.html)
+
+- **Clase 6: Máquinas virtuales y GitHub ** [.html](./clase6.html)
 
