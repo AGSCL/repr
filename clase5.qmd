@@ -14,6 +14,7 @@ format:
       - mylibs/ninjutsu.css
       - mylibs/theme2.css #en verdad lo necesita
       - mylibs/custom.css #con cuestiones de titulo
+      - mylibs/logo.css
     width: 1600
     height: 900      
     fig-cap-location: top
@@ -39,6 +40,7 @@ engine: knitr
 ```{r}
 #| label: setup_theme0
 #| include: false
+#| results: hide
 rm(list = ls())
 ```
 
@@ -52,6 +54,9 @@ rm(list = ls())
 #| fig-align: "center"
 #| warnings: false
 #| message: false
+
+rm(list=ls());gc()
+
 if(!require(showtext)){install.packages("showtext")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 
@@ -272,11 +277,7 @@ data/ejemplo_datos.RData")
 #Press the S key (or use the Navigation Menu) to show the presentation speaker view:
 ---->
 :::
-<!----
 
-#https://quarto.org/docs/presentations/revealjs/presenting.html
-#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
----->
 
 ## Fuentes
 

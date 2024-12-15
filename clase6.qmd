@@ -14,6 +14,7 @@ format:
       - mylibs/ninjutsu.css
       - mylibs/theme2.css #en verdad lo necesita
       - mylibs/custom.css #con cuestiones de titulo
+      - mylibs/logo.css
     width: 1600
     height: 900      
     fig-cap-location: top
@@ -45,6 +46,8 @@ engine: knitr
 #| fig-align: "center"
 #| warnings: false
 #| message: false
+
+rm(list=ls());gc()
 if(!require(showtext)){install.packages("showtext")}
 if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(magick)){install.packages("magick")}
@@ -103,26 +106,40 @@ ggplot() +
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Las máquinas virtuales virtualizan a nivel de hardware, todo el sistema operativo; 
 - Muchos utilizan diversios servicios de computación en línea
+¿Quiénes son verdaderas VMs?
+VirtualBox: Sí, es una herramienta para crear máquinas virtuales completas.
+Saturn Cloud, Posit Cloud: Utilizan VMs en el backend, pero no son VMs desde el punto de vista del usuario.
+¿Quiénes no son VMs?
+Google Colab y Code Ocean: Utilizan contenedores, no VMs completas.
 
 <!----
 #Press the S key (or use the Navigation Menu) to show the presentation speaker view:
 ---->
 :::
 
+<!----
+
+#https://quarto.org/docs/presentations/revealjs/presenting.html
+
+rm(list=ls());gc()
+
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(janitor)){install.packages("janitor")}
+
+load("~/workspace/ejemplo_datos.RData")
+
+surveymonkey_accionsalududp_df2_cor_table |>
+  janitor::tabyl(tamizaje_ans, p19_contr_cont_nieg_epp_rec) |>
+  janitor::adorn_percentages("col") |>
+  janitor::adorn_pct_formatting(digits = 1) # Opcional: formatea los porcentajes con 1 decimal
+
+---->
 
 ## Colab
 
 - [Enlace](https://colab.research.google.com/)
 
-- [Datos]("https://github.com/AGSCL/repr/raw/master/data/ejemplo_datos.RData")
-
-::: {.notes}
-`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
-- Google Colab en general es muy útil para bases de datos pequeñas
-- Lo vieron con René
-- Permite conectarse con Github
-
-:::
+- [Datos](https://github.com/AGSCL/repr/raw/master/data/ejemplo_datos.RData)
 
 ::: {.panel-tabset}
 
@@ -136,7 +153,7 @@ image_colorize(image_read(path = "_figs/colab1.png"),35,"white")
 
 ### Paso 2
 
-- Cambiamos el entorno de ejecución (1)
+#### Cambiamos el entorno de ejecución (1)
 
 ```{r}
 image_colorize(image_read(path = "_figs/colab2.png"),35,"white")
@@ -144,7 +161,7 @@ image_colorize(image_read(path = "_figs/colab2.png"),35,"white")
 
 ### Paso 3
 
-- Cambiamos el entorno de ejecución (2)
+#### Cambiamos el entorno de ejecución (2)
 
 ```{r}
 image_colorize(image_read(path = "_figs/colab3.png"),35,"white")
@@ -152,7 +169,7 @@ image_colorize(image_read(path = "_figs/colab3.png"),35,"white")
 
 ### Paso 4
 
-- Desplegamos el código (1)
+#### Desplegamos el código (1)
 
 ```{r}
 image_colorize(image_read(path = "_figs/colab4.png"),35,"white")
@@ -160,7 +177,7 @@ image_colorize(image_read(path = "_figs/colab4.png"),35,"white")
 
 ### Paso 5
 
-- Desplegamos el código (2)
+#### Desplegamos el código (2)
 
 ```{r}
 image_colorize(image_read(path = "_figs/colab5.png"),35,"white")
@@ -168,9 +185,89 @@ image_colorize(image_read(path = "_figs/colab5.png"),35,"white")
 
 :::
 
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Google Colab en general es muy útil para bases de datos pequeñas
+- Google Colab no utiliza máquinas virtuales completas, sino contenedores (generalmente Docker) que aíslan los procesos
+- Las opciones Pro tienen un pay as you go (es usar instancias de computación contra pago. Es medio caro)
+- Calcule cuánto consume su computador y la hora de computación y en función de eso haga la compra
+- Lo vieron con René
+- Permite conectarse con Github
 
+:::
+
+## Saturn Cloud
+
+- [ENLACE](https://saturncloud.io/)
+
+::: {.panel-tabset}
+
+### Paso 1
+
+#### Entramos
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud1.png"),35,"white")
+```
+### Paso 2
+
+#### Definimos parámetros, etc.
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud2.png"),35,"white")
+```
+### Paso 3
+
+#### Elegimos recursos a utilizar
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud3.png"),35,"white")
+```
+### Paso 4
+
+#### Desplegamos el entorno
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud4.png"),35,"white")
+```
+### Paso 5
+
+#### Una vez cargado, corremos el entorno
+
+```{r}
+magick::image_colorize(magick::image_read(path = "_figs/saturn_cloud5.png"),35,"white")
+```
+
+:::
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- Aunque no es una VM en sí misma, Saturn Cloud utiliza VMs o contenedores como Docker en su backend para ejecutar entornos aislados.
+- Los usuarios no interactúan directamente con una VM completa, sino con un entorno preconfigurado para análisis de datos. (Se le llama una infraestructura de servicio en la nube)
+- Decir que hay que fijarse en no usar las opciones Pro (van asociadas a pago)
+- Fijarse en que uno antes de iniciar la instancia puede indicar los paquetes a instalar
+- Mencionar lo del SSH a la pasada
+- SIEMPRE FIJESE DE HABER CERRADO LA SESION. PORQUE SI PAGA LE PUEDE SALIR MUY CARO
+
+:::
+
+## Posit Cloud
+
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar RStudio y análisis en R.
+:::
 
 ## GitHub
+
+
+<div style="text-align: center;">
+  <video width="640" height="360" controls autoplay>
+    <source src="_figs/github_first_time.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ## Github actions
 
@@ -190,7 +287,9 @@ image_colorize(image_read(path = "_figs/colab5.png"),35,"white")
 #https://quarto.org/docs/presentations/revealjs/presenting.html
 #Explicar cómo aprendí GitHUb: https://fondecytacc.github.io/paperestallido/
 ---->
-<!-- AWS Cloud, Code Ocean, Google Colab, Saturn Cloud, Rstudio Cloud, Github Actions, entre otras. -->
+
+<!-- SSH!!! -->
+<!-- Saturn Cloud, Rstudio Cloud, Github Actions, entre otras. -->
 <!-- -	Mi primer repositorio GitHub -->
 <!-- - -	Contexto: control de versiones -->
 <!-- - -	Flujo de trabajo -->
@@ -201,6 +300,7 @@ image_colorize(image_read(path = "_figs/colab5.png"),35,"white")
 <!-- - -	Mostrar potencialidades GitHub, GitHub actions: nowcasting-->
 <!-- https://agscl.github.io/proc_seleccion/poster.html -->
 <!-- https://agscl.github.io/proc_seleccion/proy_proc_sel.html -->
+<!-- https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml -->
 
 ## Fuentes
 
