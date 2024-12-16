@@ -130,9 +130,6 @@ magick::image_read(path = "_figs/container.png")
 ::: {.column width="50%"}
 
 ::: {.nonincremental}
-- **Docker**, contenedor, existe  [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-
--  **Rocker** (Docker para entornos R) [enlace](https://rocker-project.org/)
 
 - Otras alternativas: [DataLab](https://www.datacamp.com/datalab/sign_in), [Code Ocean](https://codeocean.com/), [Kaggle Notebooks](https://www.kaggle.com/code/); [JupyterLab](https://jupyter.org/try-jupyter/lab/) ([Ver tutorial](https://docs.ncsa.illinois.edu/systems/delta/en/latest/user_guide/ood/custom-r.html)), [VirtualBox](https://www.osboxes.org/lubuntu/#lubuntu-24-04-info)
 
@@ -154,22 +151,65 @@ magick::image_colorize(magick::image_read(path = "_figs/kaggle_notebook.png"),35
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Las máquinas virtuales virtualizan a nivel de hardware, todo el sistema operativo; por ej., VirtualBox, permite tener un SO desde 0, en el que hay que instalarle R, etc. Este SO debiese quedarse igual hasta 2090, siempre que no le actualicemos los paquetes estadísticos de R adentro, etc. Es un paso tan largo que no vale la pena que les explique cómo generar este SO virtual. Mejor saber que existe y los interesad@s me contactarán posteriormente.
 
+-	Las VM requieren su propio sistema operativo y un hipervisor que las maneje. Es decir, el humano que esté moviéndole el mouse e instalando R, RStudio, etc ( y que de pasadita se puede equivocar con algo o puede no seguir siempre el mismo camino).
+
 - En la imagen vemos los alcances de cada plataforma.
 
 - Muchos utilizan diversios servicios de computación en línea
 ¿Quiénes son verdaderas VMs?
 VirtualBox: Sí, es una herramienta para crear máquinas virtuales completas.
+
 Saturn Cloud, Posit Cloud: Utilizan VMs en el backend, pero no son VMs desde el punto de vista del usuario.
-¿Quiénes no son VMs?
 Google Colab y Code Ocean: Utilizan contenedores, no VMs completas.
-
-- **Docker**: CONTENEDOR. Al encapsular R, sus paquetes y las dependencias del sistema dentro de un contenedor, se garantiza que el entorno de desarrollo, prueba y producción sea idéntico. Esto reduce problemas comunes de incompatibilidad entre sistemas operativos, versiones de paquetes o librerías del sistema.
-
-- El proyecto **Rocker** ofrece contenedores Docker listos para usar con R, diseñados para garantizar entornos reproducibles, portables y consistentes, ideales para desarrollo, pruebas y colaboración en ciencia de datos. Cada imagen que tiene un R o Rstudio Server ya preinstalado para que sea más fácil. A veces se pueden correr en servidores externos (sujeto a pagar, claro)
 
 <!----
 #Press the S key (or use the Navigation Menu) to show the presentation speaker view:
 ---->
+:::
+
+## Docker y Rocker
+
+- **Docker**, contenedor, existe  [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+-  **Rocker** (Docker para entornos R) [enlace](https://rocker-project.org/)
+
+- **DockerHub** [enlace](https://hub.docker.com/search?q=RStudio)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r }
+#| out-width: "10%"
+magick::image_colorize(magick::image_read(path = "_figs/docker.png"),35,"white")
+```
+
+```{r }
+magick::image_colorize(magick::image_read(path = "_figs/docker_flow.png"),35,"white")
+```
+<div style="text-align: center; font-size: small; font-style: italic;"> Fuente: <a href="https://docs.docker.com/get-started/docker-overview/" target="_blank">What is Docker?</a> </div>
+:::
+
+::: {.column width="50%"}
+```{r }
+magick::image_colorize(magick::image_read(path = "_figs/rel_humano_docker.svg"),35,"white")
+```
+:::
+
+::::
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+
+- Hace un flujo de datos, una receta de cocina desde el desarrollo a producción, proveyendo entornos compartibles. Mejora escalabildiad y despliegue
+
+- **Docker**: CONTENEDOR. Unidades livianas y aisladas que empaquetan una aplicación con sus dependencias, asegurando que corran donde sea. Al encapsular R, sus paquetes y las dependencias del sistema dentro de un contenedor, se garantiza que el entorno de desarrollo, prueba y producción sea idéntico. Esto reduce problemas comunes de incompatibilidad entre sistemas operativos, versiones de paquetes o librerías del sistema.
+
+- Las **imagenes** son plantillas para crear contenedores (ej., ubuntu o el que veremos a continuación); el **dockerfile** es un texto con la receta para construir una imagen (ej., instalar software, copiar archivos, configurar el entorno --> lo que haría el ser humano una vez instalado el SO); **volumenes** es donde guardamos lso script, resultados de análisis o paquetes, para que no se pierdan cuando el contenedor se detiene o elimina. Son como un disco duro externo.
+
+- El proyecto **Rocker** ofrece contenedores Docker listos para usar con R, diseñados para garantizar entornos reproducibles, portables y consistentes, ideales para desarrollo, pruebas y colaboración en ciencia de datos. Cada imagen que tiene un R o Rstudio Server ya preinstalado para que sea más fácil. A veces se pueden correr en servidores externos (sujeto a pagar, claro)
+
+- Por último, mediante la **redes** podemos comunicarlos para que cada contenedor se conecte a una o ás, permitiendo interactuar y compartir datos.
+
 :::
 
 <!----
@@ -374,27 +414,116 @@ el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar 
 
 ## GitHub
 
+:::: {.columns}
 
+### **Control de Versiones con Git y GitHub Desktop**
+
+#### **Importancia del Control de Versiones**
+- **Seguimiento de Cambios:** Permite registrar y entender qué cambios se realizaron y cuándo.
+- **Historial Histórico:** Facilita la comprensión de modificaciones previas.
+- **Manejo de Versiones:** Ayuda a trabajar con diferentes versiones de archivos.
+- **Colaboración:** Permite combinar y seguir cambios realizados por distintas personas.
+
+#### **Conceptos Clave**
+- **Repositorio:** Almacén de archivos, carpetas e historial del proyecto.
+- **Commit:** Registro puntual de los cambios realizados en un proyecto.
+- **Ramas (Branches):** Espacios de trabajo independientes del desarrollo principal.
+- **Fusiones (Merges):** Combina cambios de una rama a otra.
+- **Repositorios Remotos:** Copias almacenadas en servidores o equipos externos.
+
+::: {.column width="50%"}
 <div style="text-align: center;">
   <video width="640" height="360" controls autoplay>
     <source src="_figs/github_first_time.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
+:::
 
-## Github actions
+::: {.column width="50%"}
+```{r}
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/meme_control_version.png"),35,"white")
+```
+:::
+
+::::
 
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
-- Presentar mi problema
-- Se le define como un runner, que ejecuta flujos de trabajo en maquinas virtuales de Azure (Microsoft). 
-- Es menos (pero menos complicado) que un contenedor, porque despliega trabajos (ej., )
-- Tiene los siguientes SO's: Ubuntu: ubuntu-latest, ubuntu-20.04, etc. / Windows: windows-latest, windows-2019, etc. / macOS: macos-latest, macos-11, etc.
-- Se despliega en archivos YAML [enlace](https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml)
+- Qué es GItHub, para qué sirve
+- Sistema de control de versiones (Git) para seguimiento de software y plataforma para compartir proyectos (GitHub). Incluye GitHub Desktop.
+:::
 
-- **1era**: Hacemos click en new notebook. Notebook, que es.
+## Github (2= GUI)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### **Flujo de Trabajo en Git**
+El control de versiones es un enfoque sistemático para gestionar los cambios en archivos a lo largo del tiempo, asegurando organización y colaboración eficiente.
+
+#### **Repositorio con GitHub Desktop**
+1. **Requisitos Previos:**
+   - Instalar **GitHub Desktop** desde [desktop.github.com](https://desktop.github.com).
+   - Crear una cuenta en GitHub.
+   
+2. **Siguientes Pasos:**
+   - Configurar tu repositorio local y conectar con GitHub para iniciar el control de versiones.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/marco_robles_github.jpg"),35,"white")
+```
+:::
+
+::::
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 
 :::
+
+## GitHub (3= SSH)
+
+## GitHub (4= Aplicación)
+
+
+
+## Github Pages
+
+### **Crear un Repositorio para un Sitio Web con GitHub Pages**
+
+1. **Crear el Repositorio:**
+   - Nombre: `nombre-usuario.github.io` (reemplaza `nombre-usuario` con tu nombre de usuario en GitHub).
+
+2. **Configurar GitHub Pages:**
+   - Ve a `Settings > Pages`.
+   - Selecciona:
+     - **Rama:** `main`.
+     - **Carpeta:** `/ (root)` o una carpeta específica donde guardarás los archivos del sitio web.
+   - Guarda los cambios.
+
+3. **Clonar el Repositorio:**
+   - Clona el repositorio a una carpeta local en tu equipo usando GitHub Desktop o el comando:
+     ```bash
+     git clone https://github.com/nombre-usuario/nombre-usuario.github.io.git
+     ```
+
+4. **Preparar los Archivos del Sitio Web:**
+   - Asegúrate de incluir un archivo `index.html` en el repositorio, ya que es necesario para que el sitio web funcione.
+
+5. **Comienza a Trabajar:**
+   - Edita y agrega archivos según lo necesites para tu sitio web.
+   - Sube los cambios al repositorio remoto para que se reflejen en GitHub Pages.
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+
+:::
+
 
 <!----
 #https://quarto.org/docs/presentations/revealjs/presenting.html
@@ -407,8 +536,7 @@ el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar 
 <!-- - -	Contexto: control de versiones -->
 <!-- - -	Flujo de trabajo -->
 <!-- - -	Elementos -->
-<!-- - -	Acciones -->
-<!-- - -	GitHub Pages -->
+
 
 <!-- - -	Mostrar potencialidades GitHub, GitHub actions: nowcasting-->
 <!-- https://agscl.github.io/proc_seleccion/poster.html -->
@@ -418,5 +546,6 @@ el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar 
 ## Fuentes
 
 - Breuer, J., & Aust, F. (2022, 27-28 de Abril). Reproducible research workflows for psychologists: Other topics in reproducible research [Presentation]. KU Leuven. Obtenido desde: https://frederikaust.com/reproducible-research-practices-workshop/slides/7_Other_Topics.html
+- Wembo, J. (2024, 24 de Septiembre). Learn Docker. DataCamp. https://www.datacamp.com/blog/learn-docker
 
 
