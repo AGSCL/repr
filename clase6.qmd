@@ -134,11 +134,13 @@ magick::image_read(path = "_figs/container.png")
 - Otras alternativas: [DataLab](https://www.datacamp.com/datalab/sign_in), [Code Ocean](https://codeocean.com/), [Kaggle Notebooks](https://www.kaggle.com/code/); [JupyterLab](https://jupyter.org/try-jupyter/lab/) ([Ver tutorial](https://docs.ncsa.illinois.edu/systems/delta/en/latest/user_guide/ood/custom-r.html)), [VirtualBox](https://www.osboxes.org/lubuntu/#lubuntu-24-04-info)
 
 ```{r }
-#| out-width: "10%"
+#| fig.align: 'right'
+#| out-width: "30%"
 magick::image_colorize(magick::image_read(path = "_figs/datalab.png"),35,"white")
 ```
 ```{r }
-#| out-width: "10%"
+#| fig.align: 'left'
+#| out-width: "30%"
 magick::image_colorize(magick::image_read(path = "_figs/kaggle_notebook.png"),35,"white")
 ```
 
@@ -210,6 +212,7 @@ magick::image_colorize(magick::image_read(path = "_figs/rel_humano_docker.svg"),
 
 - Por último, mediante la **redes** podemos comunicarlos para que cada contenedor se conecte a una o ás, permitiendo interactuar y compartir datos.
 
+- Un **hipervisor**: programa para ejecutar muchas VMs en un solo hardware. Es un monitor de VMs
 :::
 
 <!----
@@ -416,35 +419,49 @@ el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar 
 
 :::: {.columns}
 
-### **Control de Versiones con Git y GitHub Desktop**
+::: {.column width="40%"}
+### **Control de Versiones**
 
-#### **Importancia del Control de Versiones**
-- **Seguimiento de Cambios:** Permite registrar y entender qué cambios se realizaron y cuándo.
-- **Historial Histórico:** Facilita la comprensión de modificaciones previas.
-- **Manejo de Versiones:** Ayuda a trabajar con diferentes versiones de archivos.
-- **Colaboración:** Permite combinar y seguir cambios realizados por distintas personas.
+#### **Importancia**
+::: {.nonincremental}
+- Seguimiento de Cambios
+- Historial Histórico 
+- Manejo de Versiones
+- Colaboración 
 
-#### **Conceptos Clave**
-- **Repositorio:** Almacén de archivos, carpetas e historial del proyecto.
-- **Commit:** Registro puntual de los cambios realizados en un proyecto.
-- **Ramas (Branches):** Espacios de trabajo independientes del desarrollo principal.
-- **Fusiones (Merges):** Combina cambios de una rama a otra.
-- **Repositorios Remotos:** Copias almacenadas en servidores o equipos externos.
+:::
 
-::: {.column width="50%"}
 <div style="text-align: center;">
-  <video width="640" height="360" controls autoplay>
+  <video width="640" height="260" controls autoplay>
     <source src="_figs/github_first_time.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
+
 :::
 
 ::: {.column width="50%"}
 ```{r}
-#| out-width: "50%"
+#| out-width: "40%"
+#| fig.align: 'left'
+magick::image_read(path = "_figs/ascii_image.png")
+```
+```{r}
+#| out-width: "40%"
+#| fig.align: 'right'
 magick::image_colorize(magick::image_read(path = "_figs/meme_control_version.png"),35,"white")
 ```
+```{r}
+#| out-width: "50%"
+#| fig.align: 'left'
+magick::image_colorize(magick::image_read(path = "_figs/track_historial.png"),35,"white")
+```
+```{r}
+#| out-width: "25%"
+#| fig.align: 'right'
+magick::image_colorize(magick::image_read(path = "_figs/git_control_versiones.png"),35,"white")
+```
+
 :::
 
 ::::
@@ -453,29 +470,44 @@ magick::image_colorize(magick::image_read(path = "_figs/meme_control_version.png
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Qué es GItHub, para qué sirve
 - Sistema de control de versiones (Git) para seguimiento de software y plataforma para compartir proyectos (GitHub). Incluye GitHub Desktop.
+
+**PARA QUÉ SIRVE**
+
+- **Seguimiento de Cambios:** Permite registrar y entender qué cambios se realizaron y cuándo.
+
+- **Historial Histórico:** Facilita la comprensión de modificaciones previas.
+
+- **Manejo de Versiones:** Ayuda a trabajar con diferentes versiones de archivos.
+
+- **Colaboración:** Permite combinar y seguir cambios realizados por distintas personas.
 :::
 
-## Github (2= GUI)
+## Github (2= Conceptos)
 
 :::: {.columns}
 
-::: {.column width="50%"}
-#### **Flujo de Trabajo en Git**
-El control de versiones es un enfoque sistemático para gestionar los cambios en archivos a lo largo del tiempo, asegurando organización y colaboración eficiente.
+::: {.column width="30%"}
 
-#### **Repositorio con GitHub Desktop**
-1. **Requisitos Previos:**
-   - Instalar **GitHub Desktop** desde [desktop.github.com](https://desktop.github.com).
-   - Crear una cuenta en GitHub.
-   
-2. **Siguientes Pasos:**
-   - Configurar tu repositorio local y conectar con GitHub para iniciar el control de versiones.
+- Repositorio
+
+- Commit
+
+- Ramas
+
+- Fusiones
+
+- Repositorios remotos
+
 :::
 
-::: {.column width="50%"}
+::: {.column width="70%"}
 ```{r}
 #| out-width: "50%"
-magick::image_colorize(magick::image_read(path = "_figs/marco_robles_github.jpg"),35,"white")
+magick::image_colorize(magick::image_read(path = "_figs/git-commit-git-push-git-out.jpg"),35,"white")
+```
+```{r}
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/gitbranches.png"),35,"white")
 ```
 :::
 
@@ -484,12 +516,68 @@ magick::image_colorize(magick::image_read(path = "_figs/marco_robles_github.jpg"
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 
+**Conceptos Clave**
+- **Repositorio:** Almacén de archivos, carpetas e historial del proyecto. Puede ser local o remoto
+- **Commit:** Registro puntual de los cambios realizados en un proyecto. Uno puede indicarle qué hizo, a los archivos, etc.
+- **Ramas (Branches):** Espacios de trabajo independientes del desarrollo principal. Si yo quiero probar algo, no lo hago en el main/master, sino que lo hago en otra ramita.
+- **Fusiones (Merges):** Combina cambios de una rama a otra.
+- **Repositorios Remotos:** Copias almacenadas en servidores o equipos externos.
+
 :::
 
-## GitHub (3= SSH)
+## Github (3= GUI)
 
-## GitHub (4= Aplicación)
+:::: {.columns}
 
+::: {.column width="40%"}
+#### **Flujo de Trabajo en Git**
+El control de versiones es un enfoque sistemático para gestionar los cambios en archivos a lo largo del tiempo, asegurando organización y colaboración eficiente.
+
+#### **Repositorio con GitHub Desktop**
+1. **Requisitos Previos:**
+   - Instalar  desde [**GitHub Desktop**](https://desktop.github.com).
+   - Crear una cuenta en GitHub.
+   
+2. **Siguientes Pasos:**
+   - Configurar repositorio local y conectar GitHub para iniciar control de versiones.
+:::
+
+::: {.column width="60%"}
+```{r}
+#| fig.align: 'left'
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/marco_robles_github.jpg"),35,"white")
+```
+```{r}
+#| fig.align: 'right'
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/github_desktop1.png"),35,"white")
+```
+:::
+
+::::
+
+::: {.notes}
+
+
+:::
+
+## GitHub (4= SSH)
+
+
+::: {.notes}
+`r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+- **Ojo**: GitHub trabaja con versiones.
+- Muy importante especificar bien el .gitignore
+- Hay cosas que no queremos que se sepan
+:::
+
+## GitHub (5= Aplicación)
+
+```{r}
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/ascii_image.png"),35,"white")
+```
 
 
 ## Github Pages
