@@ -107,7 +107,7 @@ nav_panel(
                               "Caja" = "box",
                               "Violín" = "violin")),
       selectInput("especie", "Filtrar por Especie:",
-                  choices = c("Todas", unique(iris$Species))),
+                  choices = c("Todas", levels(iris$Species))), #cambiar el tipo
       sliderInput("punto_tamano", "Tamaño de Puntos:",
                   min = 1, max = 10, value = 3),
       checkboxInput("mostrar_suavizado", "Mostrar línea de tendencia", TRUE)
@@ -187,7 +187,7 @@ nav_panel(
               <li>Asigna un título a tu aplicación en el campo <b>Title</b>.</li>
               <li>Clic en el botón <b>Publish</b> para subir la aplicación al servidor.</li>
           </ol>
-          <a href="/https://github.com/AGSCL/repr/raw/master/_figs/paso4_shiny.png" target="_blank">
+          <a href="https://github.com/AGSCL/repr/raw/master/_figs/paso4_shiny.png" target="_blank">
               <img src="https://github.com/AGSCL/repr/raw/master/_figs/paso4_shiny.png"
                    style="width: 20%; margin-bottom: 20px;"
                    alt="Gestionar tokens en shinyapps.io">

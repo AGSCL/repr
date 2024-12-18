@@ -53,3 +53,10 @@ figcaption {
 .reveal a {
   line-height: 1.3em;
 }
+
+code {
+    color: #FFD700; /* Amarillo oro */
+    background-color: transparent; /* Fondo transparente, opcional */
+    font-weight: bold; /* Negrita para resaltar más */
+    font-family: monospace; /* Asegura fuente de código */
+}

@@ -15,6 +15,7 @@ format:
       - mylibs/theme2.css #en verdad lo necesita
       - mylibs/custom.css #con cuestiones de titulo
       - mylibs/logo.css
+      - mylibs/graphics.css
     width: 1600
     height: 900      
     fig-cap-location: top
@@ -440,28 +441,26 @@ el usuario solo interactúa con un entorno virtualizado diseñado para ejecutar 
 
 :::
 
+
 ::: {.column width="50%"}
+::: {.graphics-container}
+
 ```{r}
-#| out-width: "40%"
+#| out-width: "80%"
 #| fig.align: 'left'
 magick::image_read(path = "_figs/ascii_image.png")
 ```
 ```{r}
-#| out-width: "40%"
+#| out-width: "35%"
 #| fig.align: 'right'
 magick::image_colorize(magick::image_read(path = "_figs/meme_control_version.png"),35,"white")
 ```
 ```{r}
-#| out-width: "50%"
+#| out-width: "30%"
 #| fig.align: 'left'
 magick::image_colorize(magick::image_read(path = "_figs/track_historial.png"),35,"white")
 ```
-```{r}
-#| out-width: "25%"
-#| fig.align: 'right'
-magick::image_colorize(magick::image_read(path = "_figs/git_control_versiones.png"),35,"white")
-```
-
+:::
 :::
 
 ::::
@@ -498,15 +497,23 @@ magick::image_colorize(magick::image_read(path = "_figs/git_control_versiones.pn
 
 - Repositorios remotos
 
+```{r}
+#| out-width: "50%"
+#| fig.align: 'right'
+magick::image_colorize(magick::image_read(path = "_figs/git_control_versiones.png"),35,"white")
+```
+
 :::
 
 ::: {.column width="70%"}
 ```{r}
-#| out-width: "50%"
+#| out-width: "35%"
+#| fig-align: 'right'
 magick::image_colorize(magick::image_read(path = "_figs/git-commit-git-push-git-out.jpg"),35,"white")
 ```
 ```{r}
-#| out-width: "50%"
+#| out-width: "60%"
+#| fig-align: 'left'
 magick::image_colorize(magick::image_read(path = "_figs/gitbranches.png"),35,"white")
 ```
 :::
@@ -531,7 +538,7 @@ magick::image_colorize(magick::image_read(path = "_figs/gitbranches.png"),35,"wh
 
 ::: {.column width="40%"}
 #### **Flujo de Trabajo en Git**
-El control de versiones es un enfoque sistemático para gestionar los cambios en archivos a lo largo del tiempo, asegurando organización y colaboración eficiente.
+El **control de versiones** es un enfoque sistemático para gestionar cambios en archivos en el tiempo, asegurando organización y colaboración eficiente.
 
 #### **Repositorio con GitHub Desktop**
 1. **Requisitos Previos:**
@@ -544,15 +551,16 @@ El control de versiones es un enfoque sistemático para gestionar los cambios en
 
 ::: {.column width="60%"}
 ```{r}
-#| fig.align: 'left'
-#| out-width: "50%"
+#| fig.align: 'right'
+#| out-width: "40%"
 magick::image_colorize(magick::image_read(path = "_figs/marco_robles_github.jpg"),35,"white")
 ```
 ```{r}
-#| fig.align: 'right'
+#| fig.align: 'left'
 #| out-width: "50%"
 magick::image_colorize(magick::image_read(path = "_figs/github_desktop1.png"),35,"white")
 ```
+
 :::
 
 ::::
@@ -562,23 +570,67 @@ magick::image_colorize(magick::image_read(path = "_figs/github_desktop1.png"),35
 
 :::
 
-## GitHub (4= SSH)
+## GitHub (4= Privacidad)
 
+- [gitignore](https://github.com/AGSCL/repr/raw/master/.gitignore)
+
+- **SSH**
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/secure-and-unsecure-channel-1.png"),35,"white")
+```
+<div style="text-align: center; font-size: small; font-style: italic;"> Fuente: <a href="https://inspirezone.tech/git-ssh-keys-simplified/" target="_blank">Fum2. (2020, August). Git SSH keys simplified and how to set up on GitHub. InspireZone.</a> </div>
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| out-width: "50%"
+magick::image_colorize(magick::image_read(path = "_figs/ssh_key.png"),35,"white")
+```
+
+:::
+
+::::
 
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - **Ojo**: GitHub trabaja con versiones.
 - Muy importante especificar bien el .gitignore
 - Hay cosas que no queremos que se sepan
+- Basic concept of using keys to secure communication between two points
+- La llave que está en tu computador NUNCA debe ser compartida. El hecho de que tu computador tenga esta llave es lo que hace seguro el rpotocolo daddo que solo tu computador puede desencriptar mensajes que han sido encriptados usando la llave pública.
+
+
 :::
 
 ## GitHub (5= Aplicación)
 
+:::: {.columns}
+
+::: {.column width="60%"}
+
+- [Tutorial](https://agscl2.shinyapps.io/tutorial_github/)
+<iframe src="https://agscl2.shinyapps.io/tutorial_github/" width="100%" height="300px" style="border:none;"></iframe>
+
+:::
+
+::: {.column width="40%"}
+
 ```{r}
 #| out-width: "50%"
-magick::image_colorize(magick::image_read(path = "_figs/ascii_image.png"),35,"white")
+magick::image_colorize(magick::image_read(path = "_figs/gitpullpush.png"),35,"white")
 ```
 
+:::
+
+::::
 
 ## Github Pages
 
@@ -609,6 +661,9 @@ magick::image_colorize(magick::image_read(path = "_figs/ascii_image.png"),35,"wh
 
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
+https://agscl.github.io/proc_seleccion/poster.html 
+https://agscl.github.io/proc_seleccion/proy_proc_sel.html 
+https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml
 
 :::
 

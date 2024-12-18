@@ -125,10 +125,6 @@ ggplot() +
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Para mí, esta no es tanto una herramienta de reproducibilidad, como de comunicación de resultados y al servicio de la ciencia abierta
-
-<!----
-#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
----->
 :::
 
 ## Ejemplo
@@ -177,10 +173,6 @@ image_colorize(image_read(path = "_figs/shiny_ejemplo.png"),35,"gray")
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Por qué creen que nos apareció ese mensaje?
-
-<!----
-#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
----->
 :::
 
 ## Algunos ejemplos externos
@@ -198,9 +190,6 @@ image_colorize(image_read(path = "_figs/shiny_ejemplo.png"),35,"gray")
 - Colaboré un tiempo con el centro de estudios de la mujer, que era un centro muy antiguo y con personas de reputada trayectoria pero bastante tradicionales. Lo que ocurría es que la encuestadora siempre les pasaba los datos en formato Stata, y me pedían siempre que se los convirtiera a sav (SPSS). Entonces tuve que crear una para eso. Para eso usé `rio` para que las señoras suban la base original y esta aplicación las transformara.
 - No tengo una referencia directa de trabajos míos con esto porque es muy pesado y lo tuve que borrar. Pero esta aplicación es super útil para hacer a veces modelos multivariados (ej., regresiones ajustando por muchas variables o añadiendo muchos predictores)
 - **OJO**: De todas formas, siempre tengan cuidado con quien comparten sus datos cuando ingresan a un shiny
-<!----
-#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
----->
 :::
 
 ## Componentes
@@ -267,9 +256,6 @@ digraph shiny_diagram {
 - **SERVER** La lógica detrás (back-end), lo que trabaja para generar los gráficos. Requiere un `input$` que es el botoncito, etc., que está en UI y apretó el usuario, más los códigos internos; más un `output` que es la salida que mostrará com resultado dinámico. Regularmente los `output` son procesados por los `render`, en este caso, `renderPlot`.
 
 - Lo que hace ShinyApp es que los conecta generando una plicación funcional.
-<!----
-#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
----->
 :::
 
 ## Manos a la obra
@@ -283,10 +269,6 @@ digraph shiny_diagram {
 ::: {.notes}
 `r invisible("#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#_#")`
 - Ahora vamos a ir a mi aplicación que les preparé
-
-<!----
-#Press the S key (or use the Navigation Menu) to show the presentation speaker view:
----->
 :::
 
 
