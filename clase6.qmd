@@ -632,9 +632,7 @@ magick::image_colorize(magick::image_read(path = "_figs/gitpullpush.png"),35,"wh
 
 ::::
 
-## Github Pages
-
-### **Crear un Repositorio para un Sitio Web con GitHub Pages**
+## Github Pages {.smaller}
 
 1. **Crear el Repositorio:**
    - Nombre: `nombre-usuario.github.io` (reemplaza `nombre-usuario` con tu nombre de usuario en GitHub).
@@ -668,6 +666,27 @@ https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml
 :::
 
 
+## 
+
+**Espero les haya servido el curso**
+
+A continuación les dejamos una aplicación de [retroalimentación](https://agscl2.shinyapps.io/retroalimentacion/) anónimo y que nos sirve para mejorar (dejamos el código disponible en el GitHub con el enlace a los resultados de la encuesta).
+
+```{r}
+#| out-width: "50%"
+magick::image_read(path = "_figs/piolin_gracias.gif")
+```
+
+## Fuentes
+
+::: {.nonincremental}
+- Breuer, J., & Aust, F. (2022, 27-28 de Abril). Reproducible research workflows for psychologists: Other topics in reproducible research [Presentation]. KU Leuven. Obtenido desde: https://frederikaust.com/reproducible-research-practices-workshop/slides/7_Other_Topics.html
+- Wembo, J. (2024, 24 de Septiembre). Learn Docker. DataCamp. https://www.datacamp.com/blog/learn-docker
+- Plaza-Vega, F. (2024). Mini curso: Quarto y GitHub Pages. III Jornadas de Ingeniería 
+Estadística 202, 11 y 12 de Noviembre 2024, Auditorio DMCC Universidad de Santiago de 
+Chile. https://github.com/FranPlaza/Quarto-Github 
+:::
+
 <!----
 #https://quarto.org/docs/presentations/revealjs/presenting.html
 #Explicar cómo aprendí GitHUb: https://fondecytacc.github.io/paperestallido/
@@ -685,10 +704,4 @@ https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml
 <!-- https://agscl.github.io/proc_seleccion/poster.html -->
 <!-- https://agscl.github.io/proc_seleccion/proy_proc_sel.html -->
 <!-- https://github.com/AGSCL/proc_seleccion/blob/main/.github/workflows/main.yml -->
-
-## Fuentes
-
-- Breuer, J., & Aust, F. (2022, 27-28 de Abril). Reproducible research workflows for psychologists: Other topics in reproducible research [Presentation]. KU Leuven. Obtenido desde: https://frederikaust.com/reproducible-research-practices-workshop/slides/7_Other_Topics.html
-- Wembo, J. (2024, 24 de Septiembre). Learn Docker. DataCamp. https://www.datacamp.com/blog/learn-docker
-
 

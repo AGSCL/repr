@@ -7,3 +7,4 @@
 ^talks_posters$
 ^grants$
 ^LICENSE\.md$
+^\.secrets$
