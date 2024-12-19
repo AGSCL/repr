@@ -684,7 +684,8 @@ magick::image_read(path = "_figs/piolin_gracias.gif")
 - Wembo, J. (2024, 24 de Septiembre). Learn Docker. DataCamp. https://www.datacamp.com/blog/learn-docker
 - Plaza-Vega, F. (2024). Mini curso: Quarto y GitHub Pages. III Jornadas de Ingeniería 
 Estadística 202, 11 y 12 de Noviembre 2024, Auditorio DMCC Universidad de Santiago de 
-Chile. https://github.com/FranPlaza/Quarto-Github 
+Chile. https://github.com/FranPlaza/Quarto-Github
+- 
 :::
 
 <!----
